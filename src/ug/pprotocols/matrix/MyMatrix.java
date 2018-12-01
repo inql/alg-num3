@@ -1,5 +1,6 @@
-package ug.pprotocols;
+package ug.pprotocols.matrix;
 
+import ug.pprotocols.Swapper;
 import ug.pprotocols.datatypes.MatrixCompatible;
 
 import java.util.stream.IntStream;

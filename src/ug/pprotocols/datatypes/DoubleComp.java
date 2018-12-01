@@ -7,7 +7,7 @@ public class DoubleComp implements MatrixCompatible<DoubleComp,Double>{
     public DoubleComp(int nominator, int denominator) {this.value = (double)nominator/denominator;}
 
     public DoubleComp(int value) {
-        this(value,65536);
+        this(value,1);
     }
 
     public DoubleComp(){
@@ -17,12 +17,6 @@ public class DoubleComp implements MatrixCompatible<DoubleComp,Double>{
     @Override
     public Double getValue() {
         return value;
-    }
-
-    @Override
-    public DoubleComp setValue(int value) {
-        this.value = (double)value/65536;
-        return this;
     }
 
     @Override

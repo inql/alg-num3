@@ -1,8 +1,7 @@
 package ug.pprotocols.algorithm;
 
 import ug.pprotocols.ChoiceType;
-import ug.pprotocols.MyMatrix;
-import ug.pprotocols.Randomizer;
+import ug.pprotocols.matrix.MyMatrix;
 import ug.pprotocols.Swapper;
 import ug.pprotocols.datatypes.MatrixCompatible;
 import ug.pprotocols.datatypes.MatrixCompatibleFactory;
