@@ -5,17 +5,13 @@ import ug.pprotocols.datatypes.DoubleComp;
 import ug.pprotocols.datatypes.MatrixCompatible;
 import ug.pprotocols.datatypes.MatrixCompatibleFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MatrixGenerator {
 
     public int agentsCount;
-    public List<String> keys;
-    public Map<String, Integer> keyToIndex;
-    public Map<Integer, String> indexToKey;
+    public Map<Integer, Case> indexToKey;
     public MatrixCompatibleFactory matrixCompatibleFactory;
 
     double nOver2;
@@ -27,8 +23,7 @@ public class MatrixGenerator {
         this.matrixCompatibleFactory = new MatrixCompatibleFactory(DataType.DOUBLE);
         this.agentsCount = n;
         generateKeys();
-        generateMaps();
-        this.numberOfEquations = keys.size();
+        this.numberOfEquations = indexToKey.keySet().size();
 
         this.nOver2 = (double)newton((long)n,2L);
     }
@@ -54,17 +49,16 @@ public class MatrixGenerator {
     }
 
     private MatrixCompatible generateValue(int i, int j){
-        String currentCaseRow = indexToKey.get(i);
-        String[] countsRow = currentCaseRow.split(",");
+        Case currentCaseRow = indexToKey.get(i);
 
-        int yesCountsRow = Integer.parseInt(countsRow[0]);
-        int noCountsRow = Integer.parseInt(countsRow[1]);
+        int yesCountsRow = currentCaseRow.yesVoters;
+        int noCountsRow = currentCaseRow.noVoters;
 
-        String currentCaseColumn = indexToKey.get(j);
-        String[] countsColumn = currentCaseColumn.split(",");
+        Case currentCaseColumn = indexToKey.get(j);
 
-        int yesCountsColumn = Integer.parseInt(countsColumn[0]);
-        int noCountsColumn = Integer.parseInt(countsColumn[1]);
+        int yesCountsColumn = currentCaseColumn.yesVoters;
+        int noCountsColumn = currentCaseColumn.noVoters;
+
 
         if(yesCountsRow == agentsCount && noCountsRow ==0 && i == j)
             return matrixCompatibleFactory.createWithNominator(1D);
@@ -72,14 +66,14 @@ public class MatrixGenerator {
             return matrixCompatibleFactory.createWithNominator(1D);
         else if(yesCountsRow == 0 && noCountsRow == 0 && i == j)
             return matrixCompatibleFactory.createWithNominator(1D);
-        else if (yesCountsRow == yesCountsColumn && noCountsRow == noCountsColumn && (yesCountsRow > 1 || noCountsRow > 1 || agentsCount - yesCountsRow - noCountsRow > 1)) // Przypadek, gdy nic się nie zmienia (wylosowana została para agentów o tym samym zdaniu)
-            return getProbabilityCase1(agentsCount, yesCountsRow, noCountsRow);
-        else if (yesCountsRow + 1 == yesCountsColumn && noCountsRow == noCountsColumn && yesCountsRow > 0 && yesCountsRow + noCountsRow < agentsCount) //Przypadek, gdy liczba agentów na "tak" zwiększa się o 1 (wylosowano 1 agenta na "tak" i jednego niezdecydowanego)
-            return getProbabilityCase2(agentsCount, yesCountsRow, noCountsRow);
-        else if (yesCountsRow == yesCountsColumn && noCountsRow + 1 == noCountsColumn && noCountsRow > 0 && yesCountsRow + noCountsRow < agentsCount) //Przypadek, gdy liczba agentów na "nie" zwiększa się o 1 (wylosowano 1 agenta na "nie" i jednego niezdecydowanego)
-            return getProbabilityCase3(agentsCount, yesCountsRow, noCountsRow);
-        else if (yesCountsRow - 1 == yesCountsColumn && noCountsRow - 1 == noCountsColumn && yesCountsRow > 0 && noCountsRow > 0) //Przypadek, gdy liczba agentów niezdecydowanych rośnie o 2, Czyli gdy wylosowano jednego na "tak" i jednego na "nie"
-            return getProbabilityCase4(agentsCount, yesCountsRow, noCountsRow);
+        else if (yesCountsRow == yesCountsColumn && noCountsRow == noCountsColumn && (yesCountsRow > 1 || noCountsRow > 1 || agentsCount - yesCountsRow - noCountsRow > 1))
+            return undecidedAgentsChosenCase(agentsCount, yesCountsRow, noCountsRow);
+        else if (yesCountsRow + 1 == yesCountsColumn && noCountsRow == noCountsColumn && yesCountsRow > 0 && yesCountsRow + noCountsRow < agentsCount)
+            return yesAndUndecidedAgentChosenCase(agentsCount, yesCountsRow, noCountsRow);
+        else if (yesCountsRow == yesCountsColumn && noCountsRow + 1 == noCountsColumn && noCountsRow > 0 && yesCountsRow + noCountsRow < agentsCount)
+            return noAndUndecidedAgentChosenCase(agentsCount, yesCountsRow, noCountsRow);
+        else if (yesCountsRow - 1 == yesCountsColumn && noCountsRow - 1 == noCountsColumn && yesCountsRow > 0 && noCountsRow > 0)
+            return yesAndNoAgentChosenCase(yesCountsRow, noCountsRow);
         else if (i == j)
             return matrixCompatibleFactory.createWithNominator(-1D);
         else
@@ -88,7 +82,7 @@ public class MatrixGenerator {
 
 
 
-    private MatrixCompatible getProbabilityCase1(int agents, int yesVoteCount, int noVoteCount){
+    private MatrixCompatible undecidedAgentsChosenCase(int agents, int yesVoteCount, int noVoteCount){
 
         double result = -1.0;
 
@@ -104,28 +98,24 @@ public class MatrixGenerator {
         return matrixCompatibleFactory.createWithNominator(result);
     }
 
-    private MatrixCompatible getProbabilityCase2(int agents, int yesVoteCount, int noVoteCount){
-        double result = 0.0;
-
-        if(yesVoteCount > 0 && agents - yesVoteCount - noVoteCount > 0){
-            result+= (double)(yesVoteCount * (agents - yesVoteCount - noVoteCount))/nOver2;
-        }
-
-        return matrixCompatibleFactory.createWithNominator(result);
+    private MatrixCompatible yesAndUndecidedAgentChosenCase(int agents, int yesVoteCount, int noVoteCount){
+        return matrixCompatibleFactory.createWithNominator(undecidedAgentChosenCalculation(agents,yesVoteCount,noVoteCount,yesVoteCount));
     }
 
-    private MatrixCompatible getProbabilityCase3(int agents, int yesVoteCount, int noVoteCount) {
-
-        double result = 0.0;
-
-        if(noVoteCount > 0 && agents - yesVoteCount - noVoteCount > 0){
-            result+=(double)(noVoteCount * (agents - yesVoteCount - noVoteCount))/nOver2;
-        }
-
-        return matrixCompatibleFactory.createWithNominator(result);
+    private MatrixCompatible noAndUndecidedAgentChosenCase(int agents, int yesVoteCount, int noVoteCount) {
+        return matrixCompatibleFactory.createWithNominator(undecidedAgentChosenCalculation(agents,yesVoteCount,noVoteCount,noVoteCount));
     }
 
-    private MatrixCompatible getProbabilityCase4(int agents, int yesVoteCount, int noVoteCount){
+    private double undecidedAgentChosenCalculation(int agents, int yesVoteCount, int noVoteCount, int conditionValue){
+        double result = 0.0;
+
+        if(conditionValue > 0 && agents - yesVoteCount - noVoteCount > 0)
+            result+= (double)(conditionValue * (agents-yesVoteCount-noVoteCount))/nOver2;
+
+        return result;
+    }
+
+    private MatrixCompatible yesAndNoAgentChosenCase(int yesVoteCount, int noVoteCount){
 
         double result = 0.0;
 
@@ -140,27 +130,14 @@ public class MatrixGenerator {
 
 
     private void generateKeys(){
-        keys = new ArrayList<>();
+        indexToKey = new HashMap<>();
 
+        int k = 0;
         for(int i=0; i<=agentsCount; i++){
             for(int j =0; j<=agentsCount-i; j++){
-                keys.add(i+","+j);
+                indexToKey.put(k++,new Case(i,j));
             }
         }
-    }
-    
-    private void generateMaps(){
-        keyToIndex = new HashMap<>();
-        indexToKey = new HashMap<>();
-        
-        int i =0;
-        for (String key :
-                keys) {
-            keyToIndex.put(key, i);
-            indexToKey.put(i,key);
-            i++;
-        }
-        
     }
 
     private static long newton(long n, long k){
