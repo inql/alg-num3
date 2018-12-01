@@ -10,9 +10,10 @@ public class MatrixCompatibleFactory {
         this.dataType = dataType;
     }
 
-    public MatrixCompatible createWithNominator(BigInteger value){
+    public MatrixCompatible createWithNominator(Double value){
         if(dataType == DataType.DOUBLE){
-            return new DoubleComp(value.intValue());
+            return new DoubleComp().setValue(value);
+
         }
         else{
             return null;

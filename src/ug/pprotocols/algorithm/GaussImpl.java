@@ -114,7 +114,7 @@ public class GaussImpl {
         MatrixCompatible[] result = matrixCompatibleFactory.createArray(vector.length);
 
         for (int i=0; i < vector.length; i++)
-            result[i] = matrixCompatibleFactory.createWithNominator(new BigInteger("0"));
+            result[i] = matrixCompatibleFactory.createWithNominator(0D);
 
         for (int x = 0; x < vector.length; x++)
         {
