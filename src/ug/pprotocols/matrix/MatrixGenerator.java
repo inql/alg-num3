@@ -30,20 +30,6 @@ public class MatrixGenerator {
 
 
 
-    private MatrixCompatible getProbabilityCase1(int undecidedCount, int yesVoteCount, int noVoteCount){
-
-        double result = -1.0;
-
-        if(yesVoteCount>1)
-            result += (double)newton(yesVoteCount,2)/nOver2;
-
-        if(noVoteCount > 1)
-            result += (double)newton(noVoteCount,2)/nOver2;
-
-        if()
-
-
-    }
 
 
 
