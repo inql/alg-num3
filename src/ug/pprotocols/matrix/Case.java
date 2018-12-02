@@ -2,10 +2,10 @@ package ug.pprotocols.matrix;
 
 public class Case {
 
-    final int yesVoters;
-    final int noVoters;
-    final int totalVoters;
-    final int undecidedVoters;
+    private final int yesVoters;
+    private final int noVoters;
+    private final int totalVoters;
+    private final int undecidedVoters;
 
     public Case(int yesVoters, int noVoters, int totalVoters) {
         this.yesVoters = yesVoters;

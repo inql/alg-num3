@@ -12,12 +12,12 @@ import java.util.Arrays;
 
 public class Equation<T extends MatrixCompatible> {
 
-    public MyMatrix<T> matrixA;
-    public MatrixCompatible[] vectorB;
-    public MatrixCompatible[] vectorX;
-    public GaussImpl gauss;
+    private MyMatrix<T> matrixA;
+    private MatrixCompatible[] vectorB;
+    private MatrixCompatible[] vectorX;
+    private GaussImpl gauss;
 
-    public Equation(MyMatrix<T> matrixA, MatrixCompatible[] vectorB, MatrixCompatible vectorX) {
+    Equation(MyMatrix<T> matrixA, MatrixCompatible[] vectorB, MatrixCompatible vectorX) {
         this.matrixA = matrixA;
         this.vectorB = vectorB;
         gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
