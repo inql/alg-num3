@@ -13,23 +13,25 @@ public class Equation<T extends MatrixCompatible> {
 
     private MyMatrix<T> matrixA;
     private MatrixCompatible[] vectorB;
-    private MatrixCompatible[] vectorX;
+    private MatrixCompatible[] vectorXGauss;
+    private MatrixCompatible[] vectorXJac;
+    private MatrixCompatible[] vectorXGS;
     private GaussImpl gauss;
 
     Equation(MyMatrix<T> matrixA, MatrixCompatible[] vectorB, MatrixCompatible vectorX) {
         this.matrixA = matrixA;
         this.vectorB = vectorB;
         gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
-        this.vectorX = gauss.gauss(vectorB);
+        this.vectorXGauss = gauss.gauss(vectorB);
+        gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
+        this.vectorXJac = gauss.jacobian(vectorB);
     }
 
     @Override
     public String toString() {
         return "Equation{\n" +
                 "matrixA=\n" + matrixA +
-                ", \nvectorB=\n" + Arrays.deepToString(vectorB) +
-                ", \nvectorX=\n" + Arrays.deepToString(vectorX) +
-                '}';
+                ", \nvectorB=\n" + Arrays.deepToString(vectorB);
     }
 
     public MyMatrix<T> getMatrixA() {
@@ -48,11 +50,15 @@ public class Equation<T extends MatrixCompatible> {
         this.vectorB = vectorB;
     }
 
-    public MatrixCompatible[] getVectorX() {
-        return vectorX;
+    public MatrixCompatible[] getVectorXGauss() {
+        return vectorXGauss;
     }
 
-    public void setVectorX(MatrixCompatible[] vectorX) {
-        this.vectorX = vectorX;
+    public MatrixCompatible[] getVectorXJac() {
+        return vectorXJac;
+    }
+
+    public MatrixCompatible[] getVectorXGS() {
+        return vectorXGS;
     }
 }

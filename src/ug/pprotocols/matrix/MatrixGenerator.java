@@ -1,5 +1,6 @@
 package ug.pprotocols.matrix;
 
+import ug.pprotocols.Type;
 import ug.pprotocols.datatypes.DataType;
 import ug.pprotocols.datatypes.DoubleComp;
 import ug.pprotocols.datatypes.MatrixCompatible;
@@ -46,14 +47,20 @@ public class MatrixGenerator {
         }
 
         return new Equation<>(new MyMatrix<>((DoubleComp[][]) matrixA),vectorB,null);
-
     }
 
-    public MatrixCompatible getSolution(Equation equation){
+    public MatrixCompatible getSolution(Equation equation, Type type){
         for (Integer index :
                 indexToKey.keySet()) {
             if (indexToKey.get(index).equals(caseToAnalise)){
-                return equation.getVectorX()[index];
+                switch (type){
+                    case GAUSS:
+                        return equation.getVectorXGauss()[index];
+                    case GAUSS_SEIDEL:
+                        return equation.getVectorXGS()[index];
+                    case JACOBIAN:
+                        return equation.getVectorXJac()[index];
+                }
 
             }
         }

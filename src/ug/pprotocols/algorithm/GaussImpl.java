@@ -155,7 +155,7 @@ public class GaussImpl {
         }
 
         // Na razie na sztywno 4 iteracje
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 100; i++)
         {
             for (int x =0 ; x< n; x++)
             {
