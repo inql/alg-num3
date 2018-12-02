@@ -6,9 +6,6 @@ import java.util.Random;
 
 public class Mcarlo {
 
-    // 0 - Nie
-    // 1 - Niezdecydowany
-    // 2 - Tak
     final Random random;
     final int numOfIterations;
 
@@ -43,9 +40,7 @@ public class Mcarlo {
 
     public double countProbability(Case caseOfProgram) {
 
-
         State[] motherArray = createArrayOfAgents(caseOfProgram.getTotalVoters(),caseOfProgram.getYesVoters(), caseOfProgram.getNoVoters());
-
         int countYes = 0;
 
         for (int i = 0; i < numOfIterations; i++)

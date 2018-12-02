@@ -9,6 +9,7 @@ public interface DataOperation<T extends MatrixCompatible> {
     T multiply(T element1, T element2);
     T divide(T element1, T element2);
     T abs(T element);
+    T toMinusOnePower(T element);
 
 
 }

@@ -38,4 +38,13 @@ public class DoubleOperation implements DataOperation<DoubleComp> {
         result.setValue(Math.abs(element.getValue()));
         return result;
     }
+
+    @Override
+    public DoubleComp toMinusOnePower(DoubleComp element) {
+        DoubleComp result = new DoubleComp();
+        result.setValue(1/element.getValue());
+        return result;
+    }
+
+
 }
