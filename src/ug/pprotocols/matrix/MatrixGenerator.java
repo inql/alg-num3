@@ -135,7 +135,7 @@ public class MatrixGenerator {
         int k = 0;
         for(int i=0; i<=agentsCount; i++){
             for(int j =0; j<=agentsCount-i; j++){
-                indexToKey.put(k++,new Case(i,j));
+                indexToKey.put(k++,new Case(i,j,agentsCount));
             }
         }
     }

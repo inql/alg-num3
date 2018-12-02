@@ -1,5 +1,7 @@
 package ug.pprotocols.algorithm;
 
+import ug.pprotocols.matrix.Case;
+
 import java.util.Random;
 
 public class Mcarlo {
@@ -17,28 +19,32 @@ public class Mcarlo {
         this.numOfIterations = numOfIterations;
     }
 
-    public State[] createArrayOfAgents(int N, int Y)
+    public State[] createArrayOfAgents(int total, int Y, int N)
     {
-        State[] allAgents = new State[N];
-
+        State[] allAgents = new State[total];
         for (int i = 0; i < Y; i++)
         {
             allAgents[i] = State.YES;
         }
-        for (int i = Y; i < N; i++)
+        for (int i = Y; i < Y+N; i++)
         {
             allAgents[i] = State.NO;
         }
+        for (int i = N+Y; i < total; i++)
+        {
+            allAgents[i] = State.UNDECIDED;
+        }
+
 
         return allAgents;
 
     }
 
 
-    public double countProbability(int N, int Y) {
+    public double countProbability(Case caseOfProgram) {
 
 
-        State[] motherArray = createArrayOfAgents(N, Y);
+        State[] motherArray = createArrayOfAgents(caseOfProgram.getTotalVoters(),caseOfProgram.getYesVoters(), caseOfProgram.getNoVoters());
 
         int countYes = 0;
 
