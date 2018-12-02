@@ -25,7 +25,7 @@ public class Main {
 
         DoubleComp[] vectorX = {new DoubleComp(6),new DoubleComp(25),new DoubleComp(-11),new DoubleComp(15)};
 
-        MatrixCompatible[] mc = gi.jacobian(vectorX);
+        MatrixCompatible[] mc = gi.jacobian(vectorX, 0.00000001);
 
        for (int i = 0; i < mc.length; i++)
        {
