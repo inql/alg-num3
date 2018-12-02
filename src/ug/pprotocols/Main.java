@@ -8,11 +8,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Mcarlo mc = new Mcarlo(10000);
-        System.out.println(mc.countProbability(new Case(8, 4, 15)));
+        Case caseToCheck = new Case(8,4,15);
 
-        MatrixGenerator matrixGenerator = new MatrixGenerator(3);
-        System.out.println(matrixGenerator.generateEquation());
+
+        for (int i=10000; i<100000000; i*=2){
+            System.out.println("Iteration count: "+i);
+            Mcarlo mc = new Mcarlo(i);
+            System.out.println(mc.countProbability(caseToCheck));
+        }
+
+        MatrixGenerator matrixGenerator = new MatrixGenerator(caseToCheck);
+        System.out.println(matrixGenerator.getSolution(matrixGenerator.generateEquation()));
 
     }
 }

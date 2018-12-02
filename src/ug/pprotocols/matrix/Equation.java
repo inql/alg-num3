@@ -5,7 +5,6 @@ import ug.pprotocols.algorithm.GaussImpl;
 import ug.pprotocols.datatypes.DataType;
 import ug.pprotocols.datatypes.MatrixCompatible;
 import ug.pprotocols.datatypes.MatrixCompatibleFactory;
-import ug.pprotocols.operations.DataOperation;
 import ug.pprotocols.operations.DoubleOperation;
 
 import java.util.Arrays;
@@ -31,5 +30,29 @@ public class Equation<T extends MatrixCompatible> {
                 ", \nvectorB=\n" + Arrays.deepToString(vectorB) +
                 ", \nvectorX=\n" + Arrays.deepToString(vectorX) +
                 '}';
+    }
+
+    public MyMatrix<T> getMatrixA() {
+        return matrixA;
+    }
+
+    public void setMatrixA(MyMatrix<T> matrixA) {
+        this.matrixA = matrixA;
+    }
+
+    public MatrixCompatible[] getVectorB() {
+        return vectorB;
+    }
+
+    public void setVectorB(MatrixCompatible[] vectorB) {
+        this.vectorB = vectorB;
+    }
+
+    public MatrixCompatible[] getVectorX() {
+        return vectorX;
+    }
+
+    public void setVectorX(MatrixCompatible[] vectorX) {
+        this.vectorX = vectorX;
     }
 }

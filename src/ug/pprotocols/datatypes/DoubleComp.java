@@ -29,7 +29,7 @@ public class DoubleComp implements MatrixCompatible<DoubleComp,Double>{
 
     @Override
     public String toString() {
-        return String.format("%+f",value);
+        return String.format("%+.20f",value);
     }
 
     public DoubleComp clone(){

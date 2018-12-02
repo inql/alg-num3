@@ -13,19 +13,20 @@ public class MatrixGenerator {
     public int agentsCount;
     public Map<Integer, Case> indexToKey;
     public MatrixCompatibleFactory matrixCompatibleFactory;
+    private Case caseToAnalise;
 
     double nOver2;
 
     public int numberOfEquations;
 
-    public MatrixGenerator(int n){
-
+    public MatrixGenerator(Case caseToAnalise){
+        this.caseToAnalise = caseToAnalise;
         this.matrixCompatibleFactory = new MatrixCompatibleFactory(DataType.DOUBLE);
-        this.agentsCount = n;
+        this.agentsCount = caseToAnalise.getTotalVoters();
         generateKeys();
         this.numberOfEquations = indexToKey.keySet().size();
 
-        this.nOver2 = (double)newton((long)n,2L);
+        this.nOver2 = (double)newton((long)agentsCount,2L);
     }
 
 
@@ -46,6 +47,17 @@ public class MatrixGenerator {
 
         return new Equation<>(new MyMatrix<>((DoubleComp[][]) matrixA),vectorB,null);
 
+    }
+
+    public MatrixCompatible getSolution(Equation equation){
+        for (Integer index :
+                indexToKey.keySet()) {
+            if (indexToKey.get(index).equals(caseToAnalise)){
+                return equation.getVectorX()[index];
+
+            }
+        }
+        return null;
     }
 
     private MatrixCompatible generateValue(int i, int j){

@@ -56,8 +56,9 @@ public class Mcarlo {
             {
                 shuffleArray(allAgents);
 
-                allAgents[0] = changePair(allAgents[0],allAgents[1]);
+                State temp = changePair(allAgents[0],allAgents[1]);
                 allAgents[1] = changePair(allAgents[1],allAgents[0]);
+                allAgents[0] = temp;
 
             }
             if (allAgents[0] == State.YES)

@@ -1,6 +1,8 @@
 package ug.pprotocols.matrix;
 
-public class Case {
+import java.util.Objects;
+
+public class Case{
 
     private final int yesVoters;
     private final int noVoters;
@@ -30,5 +32,21 @@ public class Case {
 
     public int getUndecidedVoters() {
         return undecidedVoters;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Case aCase = (Case) o;
+        return yesVoters == aCase.yesVoters &&
+                noVoters == aCase.noVoters &&
+                totalVoters == aCase.totalVoters &&
+                undecidedVoters == aCase.undecidedVoters;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(yesVoters, noVoters, totalVoters, undecidedVoters);
     }
 }
