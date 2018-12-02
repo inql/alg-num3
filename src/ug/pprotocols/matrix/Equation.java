@@ -24,7 +24,7 @@ public class Equation<T extends MatrixCompatible> {
         gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
         this.vectorXGauss = gauss.gauss(vectorB);
         gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
-        this.vectorXJac = gauss.jacobian(vectorB);
+        this.vectorXJac = gauss.jacobian(vectorB,0.000000001);
     }
 
     @Override
