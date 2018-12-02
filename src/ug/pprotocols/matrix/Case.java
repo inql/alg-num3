@@ -5,11 +5,15 @@ public class Case {
     final int yesVoters;
     final int noVoters;
     final int totalVoters;
+    final int undecidedVoters;
 
     public Case(int yesVoters, int noVoters, int totalVoters) {
         this.yesVoters = yesVoters;
         this.noVoters = noVoters;
         this.totalVoters = totalVoters;
+        this.undecidedVoters = totalVoters-yesVoters-noVoters;
+        if(undecidedVoters<0)
+            throw new IllegalArgumentException("Wrong number of voters!");
     }
 
     public int getNoVoters() {
@@ -22,5 +26,9 @@ public class Case {
 
     public int getYesVoters() {
         return yesVoters;
+    }
+
+    public int getUndecidedVoters() {
+        return undecidedVoters;
     }
 }
