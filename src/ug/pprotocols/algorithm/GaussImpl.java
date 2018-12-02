@@ -107,7 +107,7 @@ public class GaussImpl {
 
     }
 
-    public MatrixCompatible[] jacobian(MatrixCompatible[] vectorB){
+    public MatrixCompatible[] jacobian(MatrixCompatible[] vectorB, double precision){
 
         int n = vectorB.length;
 
@@ -154,8 +154,9 @@ public class GaussImpl {
             prevVectorX[i] = new DoubleComp(0);
         }
 
+        boolean isPrecisionReached = false;
         // Na razie na sztywno 4 iteracje
-        for (int i = 0; i < 100; i++)
+        while (!isPrecisionReached)
         {
             for (int x =0 ; x< n; x++)
             {
@@ -165,9 +166,13 @@ public class GaussImpl {
                     vectorX[x] = dataOperation.add(vectorX[x], dataOperation.multiply(Tj[x][y],prevVectorX[y]));
                 }
             }
+            if (calculateAbsoluteError(vectorX,prevVectorX) < precision)
+                isPrecisionReached = true;
+
             for (int x =0 ; x < n; x++) {
                 prevVectorX[x] = vectorX[x];
             }
+
 
         }
 
@@ -177,6 +182,16 @@ public class GaussImpl {
 
 
     }
+
+    private Double calculateAbsoluteError(MatrixCompatible[] vectorX, MatrixCompatible[] prevVectorX){
+        MatrixCompatible absoluteError = matrixCompatibleFactory.createWithNominator(0D);
+        for(int i = 0;i < vectorX.length; i++){
+            absoluteError = dataOperation.add(absoluteError,dataOperation.subtract(vectorX[i],prevVectorX[myMatrix.rows[i]]));
+        }
+        return Math.abs(absoluteError.getDoubleValue())/ (double) vectorX.length;
+    }
+
+
 
     public MatrixCompatible[][] multiplyMatrices(MatrixCompatible[][] a, MatrixCompatible[][] b) {
 
