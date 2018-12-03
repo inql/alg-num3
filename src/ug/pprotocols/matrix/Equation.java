@@ -1,6 +1,7 @@
 package ug.pprotocols.matrix;
 
 import ug.pprotocols.ChoiceType;
+import ug.pprotocols.Type;
 import ug.pprotocols.algorithm.GaussImpl;
 import ug.pprotocols.datatypes.DataType;
 import ug.pprotocols.datatypes.MatrixCompatible;
@@ -15,16 +16,13 @@ public class Equation<T extends MatrixCompatible> {
     private MatrixCompatible[] vectorB;
     private MatrixCompatible[] vectorXGauss;
     private MatrixCompatible[] vectorXJac;
+    private MatrixCompatible[] vectorXGaussSparse;
     private MatrixCompatible[] vectorXGS;
     private GaussImpl gauss;
 
     Equation(MyMatrix<T> matrixA, MatrixCompatible[] vectorB, MatrixCompatible vectorX) {
         this.matrixA = matrixA;
         this.vectorB = vectorB;
-        gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
-        this.vectorXGauss = gauss.gauss(vectorB);
-        gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE), new DoubleOperation(), ChoiceType.PARTIAL);
-        this.vectorXJac = gauss.jacobian(vectorB,0.000000001);
     }
 
     @Override
@@ -34,20 +32,22 @@ public class Equation<T extends MatrixCompatible> {
                 ", \nvectorB=\n" + Arrays.deepToString(vectorB);
     }
 
-    public MyMatrix<T> getMatrixA() {
-        return matrixA;
-    }
-
-    public void setMatrixA(MyMatrix<T> matrixA) {
-        this.matrixA = matrixA;
-    }
-
-    public MatrixCompatible[] getVectorB() {
-        return vectorB;
-    }
-
-    public void setVectorB(MatrixCompatible[] vectorB) {
-        this.vectorB = vectorB;
+    public void evaluate(Type type){
+        switch (type){
+            case GAUSS:
+                gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
+                this.vectorXGauss = gauss.gauss(vectorB,false);
+                break;
+            case JACOBIAN:
+                gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
+                this.vectorXJac = gauss.jacobian(vectorB,0.00000000000001);
+                break;
+            case GAUSS_SPARSE:
+                gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
+                this.vectorXGaussSparse = gauss.gauss(vectorB,true);
+            case GAUSS_SEIDEL:
+                break;
+        }
     }
 
     public MatrixCompatible[] getVectorXGauss() {
@@ -60,5 +60,9 @@ public class Equation<T extends MatrixCompatible> {
 
     public MatrixCompatible[] getVectorXGS() {
         return vectorXGS;
+    }
+
+    public MatrixCompatible[] getVectorXGaussSparse() {
+        return vectorXGaussSparse;
     }
 }

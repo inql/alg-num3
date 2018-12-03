@@ -25,13 +25,15 @@ public class GaussImpl {
     }
 
     @SuppressWarnings("unchecked")
-    public MatrixCompatible[] gauss(MatrixCompatible[] vectorB){
+    public MatrixCompatible[] gauss(MatrixCompatible[] vectorB, boolean isSparse){
         int n = vectorB.length;
         for(int p = 0; p<n; p++){
             switchRowOrColumn(p,p,vectorB);
             for(int i = p+1; i<n; i++){
                 MatrixCompatible alpha = dataOperation.divide(myMatrix.getValue(i,p),myMatrix.getValue(p,p));
                 vectorB[i] = dataOperation.subtract(vectorB[i],dataOperation.multiply(alpha,vectorB[p]));
+                if(isSparse && myMatrix.getValue(i,p).compareTo(matrixCompatibleFactory.createWithNominator(0D))==0)
+                    continue;
                 for (int j=p; j<n; j++){
                     myMatrix.setValue(i,j,dataOperation.subtract(myMatrix.getValue(i,j),dataOperation.multiply(alpha,myMatrix.getValue(p,j))));
                 }
@@ -155,7 +157,6 @@ public class GaussImpl {
         }
 
         boolean isPrecisionReached = false;
-        // Na razie na sztywno 4 iteracje
         while (!isPrecisionReached)
         {
             for (int x =0 ; x< n; x++)

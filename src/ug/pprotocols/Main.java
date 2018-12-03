@@ -7,6 +7,7 @@ import ug.pprotocols.datatypes.DoubleComp;
 import ug.pprotocols.datatypes.MatrixCompatible;
 import ug.pprotocols.datatypes.MatrixCompatibleFactory;
 import ug.pprotocols.matrix.Case;
+import ug.pprotocols.matrix.Equation;
 import ug.pprotocols.matrix.MatrixGenerator;
 import ug.pprotocols.matrix.MyMatrix;
 import ug.pprotocols.operations.DoubleOperation;
@@ -33,15 +34,24 @@ public class Main {
 //       }
 
 
-        test(new Case(8,4,15));
+        test(new Case(32,11,55));
     }
 
     public static void test(Case caseToAnalise){
 
         MatrixGenerator matrixGenerator = new MatrixGenerator(caseToAnalise);
-        System.out.println(matrixGenerator.getSolution(matrixGenerator.generateEquation(),Type.GAUSS));
-        System.out.println(matrixGenerator.getSolution(matrixGenerator.generateEquation(),Type.JACOBIAN));
-        Mcarlo mcarlo = new Mcarlo(1000000);
+        Equation equation = matrixGenerator.generateEquation();
+        System.out.println("Skonczylem generowac lul");
+        long start = System.nanoTime();
+        System.out.println("GAUSS "+matrixGenerator.getSolution(Type.GAUSS,equation));
+        long result = System.nanoTime() - start;
+        System.out.println(result);
+        start = System.nanoTime();
+        System.out.println("GAUSS SPARSE "+matrixGenerator.getSolution(Type.GAUSS_SPARSE,equation));
+        result = System.nanoTime() - start;
+        System.out.println(result);
+        System.out.println(matrixGenerator.getSolution(Type.JACOBIAN,equation));
+        Mcarlo mcarlo = new Mcarlo(100000);
         System.out.println(mcarlo.countProbability(caseToAnalise));
 
 

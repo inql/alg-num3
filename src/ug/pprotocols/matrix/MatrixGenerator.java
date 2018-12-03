@@ -17,7 +17,6 @@ public class MatrixGenerator {
     private Case caseToAnalise;
 
     double nOver2;
-
     public int numberOfEquations;
 
     public MatrixGenerator(Case caseToAnalise){
@@ -49,10 +48,11 @@ public class MatrixGenerator {
         return new Equation<>(new MyMatrix<>((DoubleComp[][]) matrixA),vectorB,null);
     }
 
-    public MatrixCompatible getSolution(Equation equation, Type type){
+    public MatrixCompatible getSolution(Type type, Equation equation){
         for (Integer index :
                 indexToKey.keySet()) {
             if (indexToKey.get(index).equals(caseToAnalise)){
+                equation.evaluate(type);
                 switch (type){
                     case GAUSS:
                         return equation.getVectorXGauss()[index];
@@ -60,6 +60,8 @@ public class MatrixGenerator {
                         return equation.getVectorXGS()[index];
                     case JACOBIAN:
                         return equation.getVectorXJac()[index];
+                    case GAUSS_SPARSE:
+                        return equation.getVectorXGaussSparse()[index];
                 }
 
             }
