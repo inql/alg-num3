@@ -26,13 +26,14 @@ public class GaussImpl {
 
     @SuppressWarnings("unchecked")
     public MatrixCompatible[] gauss(MatrixCompatible[] vectorB, boolean isSparse){
+        MatrixCompatible zero = matrixCompatibleFactory.createWithNominator(0D);
         int n = vectorB.length;
         for(int p = 0; p<n; p++){
             switchRowOrColumn(p,p,vectorB);
             for(int i = p+1; i<n; i++){
                 MatrixCompatible alpha = dataOperation.divide(myMatrix.getValue(i,p),myMatrix.getValue(p,p));
                 vectorB[i] = dataOperation.subtract(vectorB[i],dataOperation.multiply(alpha,vectorB[p]));
-                if(isSparse && myMatrix.getValue(i,p).compareTo(matrixCompatibleFactory.createWithNominator(0D))==0)
+                if(isSparse && myMatrix.getValue(i,p).compareTo(zero)==0)
                     continue;
                 for (int j=p; j<n; j++){
                     myMatrix.setValue(i,j,dataOperation.subtract(myMatrix.getValue(i,j),dataOperation.multiply(alpha,myMatrix.getValue(p,j))));
@@ -112,44 +113,9 @@ public class GaussImpl {
     public MatrixCompatible[] jacobian(MatrixCompatible[] vectorB, double precision){
 
         int n = vectorB.length;
-
-        for (int i =0 ;i < n; i++)
-        {
-            if (myMatrix.getValue(i,i).compareTo(new DoubleComp(0)) == 0)
-            {
-                // 0 na przekatnej \o/
-                return null;
-            }
-        }
-
-        MatrixCompatible[][] DtoMinus1 = matrixCompatibleFactory.createMatrix(n,n);
-        MatrixCompatible[][] LU = matrixCompatibleFactory.createMatrix(n,n);
-
-
-
-        for (int x = 0; x < n; x++)
-        {
-            for (int y = 0; y < n; y++)
-            {
-                if (x == y) {
-                    DtoMinus1[x][y] = dataOperation.toMinusOnePower(myMatrix.getValue(x, y));
-                    LU[x][y] = new DoubleComp(0);
-                }
-                else{
-                    LU[x][y] = dataOperation.multiply(myMatrix.getValue(x,y), new DoubleComp(-1));
-                    DtoMinus1[x][y] = new DoubleComp(0);
-                }
-            }
-        }
-
-
-
-        MatrixCompatible[][] Tj = multiplyMatrices(DtoMinus1,LU);
-
-        MatrixCompatible[] Fj = multiplyMatrixWithVector(DtoMinus1,vectorB);
-
         MatrixCompatible[] vectorX = matrixCompatibleFactory.createArray(n);
         MatrixCompatible[] prevVectorX = matrixCompatibleFactory.createArray(n);
+
         for (int i = 0; i < n; i++)
         {
             vectorX[i] = new DoubleComp(0);
@@ -159,13 +125,15 @@ public class GaussImpl {
         boolean isPrecisionReached = false;
         while (!isPrecisionReached)
         {
-            for (int x =0 ; x< n; x++)
+            for (int i =0 ; i< n; i++)
             {
-                vectorX[x] = Fj[x];
-                for (int y = 0; y < n; y++)
+                vectorX[i] = vectorB[i];
+                for (int j = 0; j < n; j++)
                 {
-                    vectorX[x] = dataOperation.add(vectorX[x], dataOperation.multiply(Tj[x][y],prevVectorX[y]));
+                    if (i != j)
+                        vectorX[i] = dataOperation.subtract(vectorX[i], dataOperation.multiply(myMatrix.getValue(i,j),  prevVectorX[j]));
                 }
+                vectorX[i] = dataOperation.divide(vectorX[i], myMatrix.getValue(i,i));
             }
             if (calculateAbsoluteError(vectorX,prevVectorX) < precision)
                 isPrecisionReached = true;
@@ -173,15 +141,48 @@ public class GaussImpl {
             for (int x =0 ; x < n; x++) {
                 prevVectorX[x] = vectorX[x];
             }
-
-
         }
 
+        return vectorX;
+    }
+
+    public MatrixCompatible[] gaussSeidel(MatrixCompatible[] vectorB, double precision){
+
+        int n = vectorB.length;
+        MatrixCompatible[] vectorX = matrixCompatibleFactory.createArray(n);
+        MatrixCompatible[] prevVectorX = matrixCompatibleFactory.createArray(n);
+
+        for (int i = 0; i < n; i++)
+        {
+            vectorX[i] = new DoubleComp(0);
+            prevVectorX[i] = new DoubleComp(0);
+        }
+
+        boolean isPrecisionReached = false;
+        while (!isPrecisionReached)
+        {
+            for (int i =0 ; i< n; i++)
+            {
+                vectorX[i] = vectorB[i];
+                for (int j = 0; j < i; j++)
+                {
+                    vectorX[i] = dataOperation.subtract(vectorX[i], dataOperation.multiply(myMatrix.getValue(i, j), prevVectorX[j]));
+                }
+                for (int j = i+1; j < n; j++)
+                {
+                    vectorX[i] = dataOperation.subtract(vectorX[i], dataOperation.multiply(myMatrix.getValue(i, j), prevVectorX[j]));
+                }
+                vectorX[i] = dataOperation.divide(vectorX[i], myMatrix.getValue(i,i));
+            }
+            if (calculateAbsoluteError(vectorX,prevVectorX) < precision)
+                isPrecisionReached = true;
+
+            for (int x =0 ; x < n; x++) {
+                prevVectorX[x] = vectorX[x];
+            }
+        }
 
         return vectorX;
-
-
-
     }
 
     private Double calculateAbsoluteError(MatrixCompatible[] vectorX, MatrixCompatible[] prevVectorX){

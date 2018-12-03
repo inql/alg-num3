@@ -49,4 +49,14 @@ public class Case{
     public int hashCode() {
         return Objects.hash(yesVoters, noVoters, totalVoters, undecidedVoters);
     }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+                "yesVoters=" + yesVoters +
+                ", noVoters=" + noVoters +
+                ", totalVoters=" + totalVoters +
+                ", undecidedVoters=" + undecidedVoters +
+                '}';
+    }
 }

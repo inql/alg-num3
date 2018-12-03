@@ -40,12 +40,14 @@ public class Equation<T extends MatrixCompatible> {
                 break;
             case JACOBIAN:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
-                this.vectorXJac = gauss.jacobian(vectorB,0.00000000000001);
+                this.vectorXJac = gauss.jacobian(vectorB,0.0001);
                 break;
             case GAUSS_SPARSE:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGaussSparse = gauss.gauss(vectorB,true);
             case GAUSS_SEIDEL:
+                gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
+                this.vectorXGS = gauss.gaussSeidel(vectorB,0.0001);
                 break;
         }
     }
