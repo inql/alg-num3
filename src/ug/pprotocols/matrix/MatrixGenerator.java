@@ -147,10 +147,7 @@ public class MatrixGenerator {
 
     }
 
-
-
-
-    private void generateKeys(){
+    public Map<Integer,Case> generateKeys(){
         indexToKey = new HashMap<>();
 
         int k = 0;
@@ -159,6 +156,7 @@ public class MatrixGenerator {
                 indexToKey.put(k++,new Case(i,j,agentsCount));
             }
         }
+        return indexToKey;
     }
 
     private static long newton(long n, long k){

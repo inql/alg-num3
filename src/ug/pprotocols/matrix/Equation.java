@@ -32,24 +32,30 @@ public class Equation<T extends MatrixCompatible> {
                 ", \nvectorB=\n" + Arrays.deepToString(vectorB);
     }
 
-    public void evaluate(Type type){
+    public MatrixCompatible[] evaluate(Type type){
         switch (type){
             case GAUSS:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGauss = gauss.gauss(vectorB,false);
-                break;
+                return this.vectorXGauss;
             case JACOBIAN:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXJac = gauss.jacobian(vectorB,0.0001);
-                break;
+                return this.vectorXJac;
             case GAUSS_SPARSE:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGaussSparse = gauss.gauss(vectorB,true);
+                return this.vectorXGaussSparse;
             case GAUSS_SEIDEL:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGS = gauss.gaussSeidel(vectorB,0.0001);
-                break;
+                return this.vectorXGS;
         }
+        return null;
+    }
+
+    public MyMatrix<T> getMatrixA() {
+        return matrixA;
     }
 
     public MatrixCompatible[] getVectorXGauss() {
