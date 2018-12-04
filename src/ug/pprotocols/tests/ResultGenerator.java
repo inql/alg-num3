@@ -38,7 +38,7 @@ public class ResultGenerator {
         for (Integer agentsNumber :
                 testScope.keySet()) {
             matrixGenerator = new MatrixGenerator(new Case(0,0,agentsNumber)); //yes\no voters doesnt matter in that case
-            MatrixCompatible[] monteCarloValues = new Mcarlo(1000000).getAllProbabilities(matrixGenerator.generateKeys());
+            MatrixCompatible[] monteCarloValues = new Mcarlo(100000).getAllProbabilities(matrixGenerator.generateKeys());
             for (Type type :
                         testsResults.keySet()) {
                 AggregatedResults aggregatedResults = new AggregatedResults();

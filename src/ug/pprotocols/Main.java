@@ -25,12 +25,13 @@ public class Main {
 //        test(new Case(7,4,20));
 
         Map<Type,Map<Integer,AggregatedResults>> results = generateCsv();
+        System.out.println(results);
     }
 
     public static Map<Type,Map<Integer, AggregatedResults>> generateCsv(){
 
         Map<Integer,Integer> testScope = new HashMap<Integer, Integer>(){{
-            put(10,100);
+            put(10,1);
 //            put(20,50);
 //            put(30,25);
 //            put(40,12);
