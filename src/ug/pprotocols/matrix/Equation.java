@@ -54,6 +54,10 @@ public class Equation<T extends MatrixCompatible> {
         return null;
     }
 
+    public MyMatrix<T> getMatrixA() {
+        return matrixA;
+    }
+
     public MatrixCompatible[] getVectorXGauss() {
         return vectorXGauss;
     }

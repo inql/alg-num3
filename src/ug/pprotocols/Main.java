@@ -10,13 +10,17 @@ public class Main {
     public static void main(String[] args) {
 
 
-        test(new Case(1,1,2));
-        test(new Case(2,1,5));
-        test(new Case(3,3,6));
-        test(new Case(7,1,10));
-        test(new Case(6,7,15));
-        test(new Case(7,4,20));
+
+
+//        test(new Case(1,1,2));
+//        test(new Case(2,1,5));
+//        test(new Case(3,3,6));
+//        test(new Case(7,1,10));
+//        test(new Case(6,7,15));
+//        test(new Case(7,4,20));
     }
+
+    
 
     public static void test(Case caseToAnalise){
 
