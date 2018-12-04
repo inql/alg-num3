@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" afterDir="false" />
-    </list>
+    <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -113,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="743">
-              <caret line="79" column="81" selection-start-line="79" selection-start-column="81" selection-end-line="79" selection-end-column="81" />
+            <state relative-caret-position="218">
+              <caret line="44" lean-forward="true" selection-end-line="129" />
             </state>
           </provider>
         </entry>
@@ -267,7 +264,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543959552669" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543961176418" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -325,7 +322,7 @@
       <workItem from="1543686902634" duration="12208000" />
       <workItem from="1543827333383" duration="11481000" />
       <workItem from="1543951951256" duration="26000" />
-      <workItem from="1543953516071" duration="6035000" />
+      <workItem from="1543953516071" duration="6861000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup">
       <created>1543702879399</created>
@@ -352,13 +349,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32698000" />
+    <option name="totallyTimeSpent" value="33524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25823593" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25823593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -368,7 +365,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32940018" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32940018" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39823008" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39823008" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -593,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="79" column="81" selection-start-line="79" selection-start-column="81" selection-end-line="79" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -620,6 +610,13 @@
             <element signature="e#331#332#0" expanded="true" />
             <element signature="e#1832#1862#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="44" lean-forward="true" selection-end-line="129" />
         </state>
       </provider>
     </entry>

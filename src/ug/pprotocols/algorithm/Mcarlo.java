@@ -1,7 +1,11 @@
 package ug.pprotocols.algorithm;
 
+import ug.pprotocols.datatypes.DataType;
+import ug.pprotocols.datatypes.MatrixCompatible;
+import ug.pprotocols.datatypes.MatrixCompatibleFactory;
 import ug.pprotocols.matrix.Case;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Mcarlo {
@@ -36,18 +40,28 @@ public class Mcarlo {
         return allAgents;
 
     }
+    public MatrixCompatible[] getAllProbabilities(Map<Integer,Case> allCases){
 
+        MatrixCompatible[] allProbabilities = new MatrixCompatibleFactory(DataType.DOUBLE).createArray(allCases.size());
 
-    public double countProbability(Case caseOfProgram) {
+        for(int i = 0; i<allCases.size(); i++){
+            allProbabilities[i] = countProbability(allCases.get(i));
+        }
 
+        return allProbabilities;
+    }
+
+    public MatrixCompatible countProbability(Case caseOfProgram) {
+
+        MatrixCompatibleFactory matrixCompatibleFactory = new MatrixCompatibleFactory(DataType.DOUBLE);
         State[] motherArray = createArrayOfAgents(caseOfProgram.getTotalVoters(),caseOfProgram.getYesVoters(), caseOfProgram.getNoVoters());
         int countYes = 0;
 
         if (motherArray.length < 2)
         {
             if (motherArray[0] == State.YES)
-                return 1;
-            else return 0;
+                return matrixCompatibleFactory.createWithNominator(1D);
+            else return matrixCompatibleFactory.createWithNominator(0D);
         }
 
         for (int i = 0; i < numOfIterations; i++)
@@ -74,7 +88,7 @@ public class Mcarlo {
 
 
 
-        return (double)countYes/numOfIterations;
+        return matrixCompatibleFactory.createWithNominator((double)countYes/numOfIterations);
 
     }
 
