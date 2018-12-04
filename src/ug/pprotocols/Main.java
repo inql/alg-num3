@@ -25,13 +25,39 @@ public class Main {
 //        test(new Case(7,4,20));
 
         Map<Type,Map<Integer,AggregatedResults>> results = generateCsv();
-        System.out.println(results);
+
+        //poki co testy printujemy, elo
+
+        for (Type type :
+        results.keySet()) {
+
+
+            System.out.println(type);
+            System.out.println("------------------------------------------");
+            for (Integer agentsNum:
+                 results.get(type).keySet()) {
+
+                System.out.println(agentsNum);
+                System.out.println("/////////////////////////////////");
+                System.out.println("błąd;czas;ilość wykonań");
+                System.out.println(results.get(type).get(agentsNum));
+
+            }
+            System.out.println();
+            System.out.println("------------------------------------------");
+
+
+        }
     }
 
     public static Map<Type,Map<Integer, AggregatedResults>> generateCsv(){
 
         Map<Integer,Integer> testScope = new HashMap<Integer, Integer>(){{
-            put(10,1);
+            put(5,200);
+            put(6,200);
+            put(7,200);
+            put(8,200);
+            put(9,200);
 //            put(20,50);
 //            put(30,25);
 //            put(40,12);
