@@ -32,12 +32,13 @@ public class GaussImpl {
             switchRowOrColumn(p,p,vectorB);
             for(int i = p+1; i<n; i++){
                 MatrixCompatible alpha = dataOperation.divide(myMatrix.getValue(i,p),myMatrix.getValue(p,p));
-                vectorB[i] = dataOperation.subtract(vectorB[i],dataOperation.multiply(alpha,vectorB[p]));
-                if(isSparse && myMatrix.getValue(i,p).compareTo(zero)==0)
-                    continue;
-                for (int j=p; j<n; j++){
-                    myMatrix.setValue(i,j,dataOperation.subtract(myMatrix.getValue(i,j),dataOperation.multiply(alpha,myMatrix.getValue(p,j))));
+                if(!isSparse || myMatrix.getValue(i,p).compareTo(zero)!=0){
+                    vectorB[i] = dataOperation.subtract(vectorB[i],dataOperation.multiply(alpha,vectorB[p]));
+                    for (int j=p; j<n; j++){
+                        myMatrix.setValue(i,j,dataOperation.subtract(myMatrix.getValue(i,j),dataOperation.multiply(alpha,myMatrix.getValue(p,j))));
+                    }
                 }
+
             }
 
 

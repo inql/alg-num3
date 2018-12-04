@@ -1,7 +1,11 @@
 package ug.pprotocols.algorithm;
 
+import ug.pprotocols.datatypes.DataType;
+import ug.pprotocols.datatypes.MatrixCompatible;
+import ug.pprotocols.datatypes.MatrixCompatibleFactory;
 import ug.pprotocols.matrix.Case;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Mcarlo {
@@ -37,8 +41,19 @@ public class Mcarlo {
 
     }
 
+    public MatrixCompatible[] getAllProbabilities(Map<Integer,Case> allCases){
 
-    public double countProbability(Case caseOfProgram) {
+        MatrixCompatible[] allProbabilities = new MatrixCompatibleFactory(DataType.DOUBLE).createArray(allCases.size());
+
+        for(int i = 0; i<allCases.size(); i++){
+            allProbabilities[i] = countProbability(allCases.get(i));
+        }
+
+        return allProbabilities;
+    }
+
+
+    public MatrixCompatible countProbability(Case caseOfProgram) {
 
         State[] motherArray = createArrayOfAgents(caseOfProgram.getTotalVoters(),caseOfProgram.getYesVoters(), caseOfProgram.getNoVoters());
         int countYes = 0;
@@ -62,7 +77,7 @@ public class Mcarlo {
         }
 
 
-        return (double)countYes/numOfIterations;
+        return new MatrixCompatibleFactory(DataType.DOUBLE).createWithNominator((double)countYes/numOfIterations);
 
     }
 
