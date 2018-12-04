@@ -4,6 +4,11 @@ import ug.pprotocols.algorithm.Mcarlo;
 import ug.pprotocols.matrix.Case;
 import ug.pprotocols.matrix.Equation;
 import ug.pprotocols.matrix.MatrixGenerator;
+import ug.pprotocols.tests.AggregatedResults;
+import ug.pprotocols.tests.ResultGenerator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -18,9 +23,26 @@ public class Main {
 //        test(new Case(7,1,10));
 //        test(new Case(6,7,15));
 //        test(new Case(7,4,20));
+
+        Map<Type,Map<Integer,AggregatedResults>> results = generateCsv();
     }
 
-    
+    public static Map<Type,Map<Integer, AggregatedResults>> generateCsv(){
+
+        Map<Integer,Integer> testScope = new HashMap<Integer, Integer>(){{
+            put(10,100);
+//            put(20,50);
+//            put(30,25);
+//            put(40,12);
+//            put(50,6);
+//            put(60,3);
+//            put(70,2);
+//            put(80,1);
+        }};
+
+        ResultGenerator resultGenerator = new ResultGenerator(testScope);
+        return resultGenerator.doTests();
+    }
 
     public static void test(Case caseToAnalise){
 
