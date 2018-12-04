@@ -43,17 +43,28 @@ public class Mcarlo {
         State[] motherArray = createArrayOfAgents(caseOfProgram.getTotalVoters(),caseOfProgram.getYesVoters(), caseOfProgram.getNoVoters());
         int countYes = 0;
 
+        if (motherArray.length < 2)
+        {
+            if (motherArray[0] == State.YES)
+                return 1;
+            else return 0;
+        }
+
         for (int i = 0; i < numOfIterations; i++)
         {
             State[] allAgents = motherArray.clone();
 
             while (!areSameStatesArray(allAgents))
             {
-                shuffleArray(allAgents);
+                int first = random.nextInt(motherArray.length);
+                int second;
+                do{
+                    second = random.nextInt(motherArray.length);
+                } while (first == second);
 
-                State temp = changePair(allAgents[0],allAgents[1]);
-                allAgents[1] = changePair(allAgents[1],allAgents[0]);
-                allAgents[0] = temp;
+                State temp = changePair(allAgents[first],allAgents[second]);
+                allAgents[second] = changePair(allAgents[second],allAgents[first]);
+                allAgents[first] = temp;
 
             }
             if (allAgents[0] == State.YES)
@@ -62,16 +73,11 @@ public class Mcarlo {
         }
 
 
+
         return (double)countYes/numOfIterations;
 
     }
 
-    public State randomUndecidedOrNo()
-    {
-        if (random.nextInt() % 2 == 1)
-            return State.UNDECIDED;
-        else return State.NO;
-    }
 
     public State changePair(State o1, State o2)
     {
@@ -86,17 +92,6 @@ public class Mcarlo {
     }
 
 
-
-    public void shuffleArray(State[] ar)
-    {
-        for (int i = ar.length - 1; i > 0; i--)
-        {
-            int index = random.nextInt(i + 1);
-            State a = ar[index];
-            ar[index] = ar[i];
-            ar[i] = a;
-        }
-    }
 
     public boolean areSameStatesArray(State[] a){
         for(int i=1; i<a.length; i++){

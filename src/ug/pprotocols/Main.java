@@ -45,8 +45,8 @@ public class Main {
         result = System.nanoTime() - start;
         System.out.println(result);
 
-//        Mcarlo mcarlo = new Mcarlo(1000000);
-//        System.out.println(mcarlo.countProbability(caseToAnalise));
+        Mcarlo mcarlo = new Mcarlo(1000000);
+        System.out.println("Monte carlo: " + mcarlo.countProbability(caseToAnalise));
 
 
 
