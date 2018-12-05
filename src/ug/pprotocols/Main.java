@@ -10,8 +10,7 @@ import ug.pprotocols.tests.ResultGenerator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -33,10 +32,10 @@ public class Main {
                     results.keySet()) {
 
                 bufferedWriter.write(type.toString() + "\n\n");
-                bufferedWriter.write("liczba agentów;błąd;czas wykonania;ilość wykonań\n");
+                bufferedWriter.write("liczba agentów;błąd;czas wykonania;ilość wykonań;\n");
                 for (Integer agentsNum :
-                        results.get(type).keySet()) {
-                    bufferedWriter.write(agentsNum + ";" + results.get(type).get(agentsNum).toString());
+                        new TreeSet<>(results.get(type).keySet())) {
+                    bufferedWriter.write("\n"+agentsNum + ";" + results.get(type).get(agentsNum).toString());
                     bufferedWriter.write("\n");
                 }
             }
@@ -49,54 +48,20 @@ public class Main {
     public static Map<Type, Map<Integer, AggregatedResults>> generateCsv() {
 
         Map<Integer, Integer> testScope = new HashMap<Integer, Integer>() {{
-            put(5, 200);
-            put(6, 200);
-            put(7, 200);
-            put(8, 200);
-            put(9, 200);
-            put(20, 50);
-            put(30, 25);
-            put(40, 12);
+            put(4,1);
+            put(5, 1);
+            put(6, 1);
+//            put(30, 1);
+//            put(40, 1);
 //            put(50, 6);
 //            put(60, 3);
 //            put(70, 2);
 //            put(80, 1);
         }};
 
+        List<Type> testCases = Arrays.asList(Type.values());
+
         ResultGenerator resultGenerator = new ResultGenerator(testScope);
-        return resultGenerator.doTests();
-    }
-
-    public static void test(Case caseToAnalise) {
-
-        System.out.println(caseToAnalise);
-        MatrixGenerator matrixGenerator = new MatrixGenerator(caseToAnalise);
-        Equation equation = matrixGenerator.generateEquation();
-        System.out.println("Skonczylem generowac lul");
-
-        long start = System.nanoTime();
-        System.out.println("GAUSS " + matrixGenerator.getSolution(Type.GAUSS, equation));
-        long result = System.nanoTime() - start;
-        System.out.println(result);
-
-        start = System.nanoTime();
-        System.out.println("GAUSS SPARSE " + matrixGenerator.getSolution(Type.GAUSS_SPARSE, equation));
-        result = System.nanoTime() - start;
-        System.out.println(result);
-
-        start = System.nanoTime();
-        System.out.println("DŻEJKOBI " + matrixGenerator.getSolution(Type.JACOBIAN, equation));
-        result = System.nanoTime() - start;
-        System.out.println(result);
-
-        start = System.nanoTime();
-        System.out.println("GAUSIK Z SEJDELEM RYJU " + matrixGenerator.getSolution(Type.GAUSS_SEIDEL, equation));
-        result = System.nanoTime() - start;
-        System.out.println(result);
-
-        Mcarlo mcarlo = new Mcarlo(1000000);
-        System.out.println("Monte carlo: " + mcarlo.countProbability(caseToAnalise));
-
-
+        return resultGenerator.doTests(testCases,10000000);
     }
 }

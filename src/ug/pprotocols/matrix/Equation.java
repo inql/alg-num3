@@ -38,17 +38,21 @@ public class Equation<T extends MatrixCompatible> {
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGauss = gauss.gauss(vectorB,false);
                 return this.vectorXGauss;
-            case JACOBIAN:
+            case JACOBIAN_MINUS6:
+            case JACOBIAN_MINUS10:
+            case JACOBIAN_MINUS14:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
-                this.vectorXJac = gauss.jacobian(vectorB,0.0001);
+                this.vectorXJac = gauss.jacobian(vectorB,type.getPrecision());
                 return this.vectorXJac;
             case GAUSS_SPARSE:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGaussSparse = gauss.gauss(vectorB,true);
                 return this.vectorXGaussSparse;
-            case GAUSS_SEIDEL:
+            case GAUSS_SEIDEL_MINUS6:
+            case GAUSS_SEIDEL_MINUS10:
+            case GAUSS_SEIDEL_MINUS14:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
-                this.vectorXGS = gauss.gaussSeidel(vectorB,0.0001);
+                this.vectorXGS = gauss.gaussSeidel(vectorB,type.getPrecision());
                 return this.vectorXGS;
         }
         return null;

@@ -12,6 +12,7 @@ import ug.pprotocols.operations.DataOperation;
 import ug.pprotocols.operations.DoubleOperation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ResultGenerator {
@@ -24,21 +25,23 @@ public class ResultGenerator {
         this.testScope = testScope;
     }
 
-    public Map<Type,Map<Integer,AggregatedResults>> doTests(){
+    public Map<Type,Map<Integer,AggregatedResults>> doTests(List<Type> testCase, int iterationsCount){
         Map<Type,Map<Integer,AggregatedResults>> testsResults = new HashMap<>();
 
-        testsResults.put(Type.GAUSS,new HashMap<>());
-        testsResults.put(Type.GAUSS_SPARSE,new HashMap<>());
-        testsResults.put(Type.GAUSS_SEIDEL,new HashMap<>());
-        testsResults.put(Type.JACOBIAN,new HashMap<>());
+
+        for (Type type :
+                testCase) {
+            testsResults.put(type,new HashMap<>());
+        }
+
         long start,stop;
-        double timeInMiliSeconds;
+        double timeInMilliSeconds;
         MatrixGenerator matrixGenerator;
 
         for (Integer agentsNumber :
                 testScope.keySet()) {
             matrixGenerator = new MatrixGenerator(new Case(0,0,agentsNumber)); //yes\no voters doesnt matter in that case
-            MatrixCompatible[] monteCarloValues = new Mcarlo(100000).getAllProbabilities(matrixGenerator.generateKeys());
+            MatrixCompatible[] monteCarloValues = new Mcarlo(iterationsCount).getAllProbabilities(matrixGenerator.generateKeys());
             for (Type type :
                         testsResults.keySet()) {
                 AggregatedResults aggregatedResults = new AggregatedResults();
@@ -47,8 +50,8 @@ public class ResultGenerator {
                         start = System.nanoTime();
                         MatrixCompatible[] results = equationToSolve.evaluate(type);
                         stop = System.nanoTime();
-                        timeInMiliSeconds = ((stop-start)/1000000D);
-                        aggregatedResults.updateAggregatedResults(new Results(calculateAbsoluteError(monteCarloValues,results,equationToSolve),timeInMiliSeconds));
+                        timeInMilliSeconds = ((stop-start)/1000000D);
+                        aggregatedResults.updateAggregatedResults(new Results(calculateAbsoluteError(monteCarloValues,results,equationToSolve),timeInMilliSeconds));
                     }
             aggregatedResults.divideByExecutionCount();
             testsResults.get(type).put(agentsNumber,aggregatedResults);

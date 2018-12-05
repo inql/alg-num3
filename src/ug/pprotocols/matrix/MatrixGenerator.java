@@ -48,26 +48,27 @@ public class MatrixGenerator {
         return new Equation<>(new MyMatrix<>((DoubleComp[][]) matrixA),vectorB,null);
     }
 
-    public MatrixCompatible getSolution(Type type, Equation equation){
-        for (Integer index :
-                indexToKey.keySet()) {
-            if (indexToKey.get(index).equals(caseToAnalise)){
-                equation.evaluate(type);
-                switch (type){
-                    case GAUSS:
-                        return equation.getVectorXGauss()[index];
-                    case GAUSS_SEIDEL:
-                        return equation.getVectorXGS()[index];
-                    case JACOBIAN:
-                        return equation.getVectorXJac()[index];
-                    case GAUSS_SPARSE:
-                        return equation.getVectorXGaussSparse()[index];
-                }
-
-            }
-        }
-        return null;
-    }
+    //redundant
+//    public MatrixCompatible getSolution(Type type, Equation equation){
+//        for (Integer index :
+//                indexToKey.keySet()) {
+//            if (indexToKey.get(index).equals(caseToAnalise)){
+//                equation.evaluate(type);
+//                switch (type){
+//                    case GAUSS:
+//                        return equation.getVectorXGauss()[index];
+//                    case GAUSS_SEIDEL:
+//                        return equation.getVectorXGS()[index];
+//                    case JACOBIAN:
+//                        return equation.getVectorXJac()[index];
+//                    case GAUSS_SPARSE:
+//                        return equation.getVectorXGaussSparse()[index];
+//                }
+//
+//            }
+//        }
+//        return null;
+//    }
 
     private MatrixCompatible generateValue(int i, int j){
         Case currentCaseRow = indexToKey.get(i);
