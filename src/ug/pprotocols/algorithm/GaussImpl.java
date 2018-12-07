@@ -225,26 +225,24 @@ public class GaussImpl {
     }
 
     @SuppressWarnings("unchecked")
-    public MatrixCompatible[] multiplyMatrixWithVector(MatrixCompatible[][] a, MatrixCompatible[] vector)
+    public MatrixCompatible[] multiplyMatrixWithVector(MyMatrix a, MatrixCompatible[] vector)
     {
-        if (a[0].length != vector.length)
+        if (a.rows.length != vector.length)
             return null;
         MatrixCompatible[] result = matrixCompatibleFactory.createArray(vector.length);
 
-        for (int i=0; i <a.length; i++)
+        for (int i=0; i <a.rows.length; i++)
             result[i] = matrixCompatibleFactory.createWithNominator(0D);
 
-        for (int x = 0; x < a.length; x++)
+        for (int x = 0; x < a.rows.length; x++)
         {
-            for (int y = 0; y < a[0].length; y++)
+            for (int y = 0; y < a.columns.length; y++)
             {
-                result[x] = dataOperation.add(result[x], dataOperation.multiply(a[x][y], vector[y]));
+                result[x] = dataOperation.add(result[x], dataOperation.multiply(a.getValue(x,y), vector[y]));
 
             }
 
         }
-
-
         return result;
     }
 

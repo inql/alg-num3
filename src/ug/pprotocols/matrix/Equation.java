@@ -18,6 +18,7 @@ public class Equation<T extends MatrixCompatible> {
     private MatrixCompatible[] vectorXJac;
     private MatrixCompatible[] vectorXGaussSparse;
     private MatrixCompatible[] vectorXGS;
+    private MatrixCompatible[] newVectorB;
     private GaussImpl gauss;
 
     Equation(MyMatrix<T> matrixA, MatrixCompatible[] vectorB, MatrixCompatible vectorX) {
@@ -37,29 +38,46 @@ public class Equation<T extends MatrixCompatible> {
             case GAUSS:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGauss = gauss.gauss(vectorB,false);
+                setNewVectorB(matrixA,this.vectorXGauss);
                 return this.vectorXGauss;
             case JACOBIAN_MINUS6:
             case JACOBIAN_MINUS10:
             case JACOBIAN_MINUS14:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXJac = gauss.jacobian(vectorB,type.getPrecision());
+                setNewVectorB(matrixA,this.vectorXJac);
                 return this.vectorXJac;
             case GAUSS_SPARSE:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGaussSparse = gauss.gauss(vectorB,true);
+                setNewVectorB(matrixA,this.vectorXGaussSparse);
                 return this.vectorXGaussSparse;
             case GAUSS_SEIDEL_MINUS6:
             case GAUSS_SEIDEL_MINUS10:
             case GAUSS_SEIDEL_MINUS14:
                 gauss = new GaussImpl(matrixA,new MatrixCompatibleFactory(DataType.DOUBLE),new DoubleOperation(), ChoiceType.PARTIAL);
                 this.vectorXGS = gauss.gaussSeidel(vectorB,type.getPrecision());
+                setNewVectorB(matrixA,this.vectorXGS);
                 return this.vectorXGS;
         }
         return null;
     }
 
+    public void setNewVectorB (MyMatrix myMatrix, MatrixCompatible[] vectorX){
+        newVectorB =  gauss.multiplyMatrixWithVector(myMatrix,vectorX);
+
+    }
+
+    public MatrixCompatible[] getNewVectorB() {
+        return newVectorB;
+    }
+
     public MyMatrix<T> getMatrixA() {
         return matrixA;
+    }
+
+    public MatrixCompatible[] getVectorB() {
+        return vectorB;
     }
 
     public MatrixCompatible[] getVectorXGauss() {

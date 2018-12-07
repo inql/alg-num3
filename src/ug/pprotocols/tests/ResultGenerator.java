@@ -51,7 +51,7 @@ public class ResultGenerator {
                         MatrixCompatible[] results = equationToSolve.evaluate(type);
                         stop = System.nanoTime();
                         timeInMilliSeconds = ((stop-start)/1000000D);
-                        aggregatedResults.updateAggregatedResults(new Results(calculateAbsoluteError(monteCarloValues,results,equationToSolve),timeInMilliSeconds));
+                        aggregatedResults.updateAggregatedResults(new Results(calculateAbsoluteError(equationToSolve.getNewVectorB(),equationToSolve.getVectorB(),equationToSolve),timeInMilliSeconds));
                     }
             aggregatedResults.divideByExecutionCount();
             testsResults.get(type).put(agentsNumber,aggregatedResults);
@@ -70,11 +70,13 @@ public class ResultGenerator {
 
     @SuppressWarnings("unchecked")
     private Double calculateAbsoluteError(MatrixCompatible[] goldenVector, MatrixCompatible[] calculatedVector, Equation equation){
-        MatrixCompatible absoluteError = matrixCompatibleFactory.createWithNominator(0D);
+        double maxAbsoluteError = Math.abs(goldenVector[0].getDoubleValue() - calculatedVector[0].getDoubleValue());
         for(int i = 0; i<goldenVector.length; i++){
-            absoluteError = dataOperation.add(absoluteError,dataOperation.subtract(goldenVector[i],calculatedVector[equation.getMatrixA().rows[i]]));
+            double temp = Math.abs(goldenVector[i].getDoubleValue() - calculatedVector[i].getDoubleValue());
+            if (temp > maxAbsoluteError)
+                maxAbsoluteError = temp;
         }
-        return Math.abs(absoluteError.getDoubleValue())/ (double) goldenVector.length;
+        return maxAbsoluteError;
     }
 
 }

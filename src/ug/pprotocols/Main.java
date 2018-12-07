@@ -48,9 +48,9 @@ public class Main {
     public static Map<Type, Map<Integer, AggregatedResults>> generateCsv() {
 
         Map<Integer, Integer> testScope = new HashMap<Integer, Integer>() {{
-            put(4,1);
-            put(5, 1);
+            put(5,1);
             put(6, 1);
+            put(7, 1);
 //            put(30, 1);
 //            put(40, 1);
 //            put(50, 6);
@@ -62,6 +62,6 @@ public class Main {
         List<Type> testCases = Arrays.asList(Type.values());
 
         ResultGenerator resultGenerator = new ResultGenerator(testScope);
-        return resultGenerator.doTests(testCases,10000000);
+        return resultGenerator.doTests(testCases,100000);
     }
 }
