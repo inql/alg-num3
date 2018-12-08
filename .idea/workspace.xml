@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/datatypes/DoubleComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/datatypes/DoubleComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/tests/AggregatedResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/tests/AggregatedResults.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/tests/Results.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/tests/Results.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wyniki.csv" beforeDir="false" afterPath="$PROJECT_DIR$/wyniki.csv" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+            <state relative-caret-position="384">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
             </state>
           </provider>
         </entry>
@@ -37,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wyniki.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+            <state relative-caret-position="-645">
+              <caret line="111" column="34" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -71,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="60" column="87" selection-start-line="60" selection-start-column="87" selection-end-line="60" selection-end-column="87" />
+            <state relative-caret-position="418">
+              <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,9 +98,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="288">
+              <caret line="52" column="63" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
               <folding>
+                <element signature="e#2912#2913#0" expanded="true" />
                 <element signature="e#2945#2946#0" expanded="true" />
                 <element signature="e#2984#2985#0" expanded="true" />
                 <element signature="e#3014#3015#0" expanded="true" />
@@ -178,12 +173,12 @@
         <option value="$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java" />
         <option value="$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java" />
         <option value="$PROJECT_DIR$/wyniki.csv" />
-        <option value="$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java" />
         <option value="$PROJECT_DIR$/src/ug/pprotocols/datatypes/DoubleComp.java" />
         <option value="$PROJECT_DIR$/src/ug/pprotocols/tests/Results.java" />
         <option value="$PROJECT_DIR$/src/ug/pprotocols/tests/AggregatedResults.java" />
-        <option value="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" />
         <option value="$PROJECT_DIR$/src/ug/pprotocols/Main.java" />
+        <option value="$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java" />
+        <option value="$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java" />
       </list>
     </option>
   </component>
@@ -260,7 +255,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544292384403" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544292386364" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -319,7 +314,7 @@
       <workItem from="1543827333383" duration="11481000" />
       <workItem from="1543951951256" duration="26000" />
       <workItem from="1543953516071" duration="6861000" />
-      <workItem from="1544286240916" duration="6013000" />
+      <workItem from="1544286240916" duration="6861000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup">
       <created>1543702879399</created>
@@ -346,13 +341,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39537000" />
+    <option name="totallyTimeSpent" value="40385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-23" width="1928" height="1107" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18916047" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18916047" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -361,7 +356,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32940018" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284169" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39823008" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -399,7 +394,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java</url>
-          <line>54</line>
+          <line>55</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -558,11 +553,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="288">
+          <caret line="52" column="63" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
           <folding>
+            <element signature="e#2912#2913#0" expanded="true" />
             <element signature="e#2945#2946#0" expanded="true" />
             <element signature="e#2984#2985#0" expanded="true" />
             <element signature="e#3014#3015#0" expanded="true" />
@@ -572,27 +585,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/tests/ResultGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="60" column="87" selection-start-line="60" selection-start-column="87" selection-end-line="60" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wyniki.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+        <state relative-caret-position="-645">
+          <caret line="111" column="34" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
         </state>
       </provider>
     </entry>
