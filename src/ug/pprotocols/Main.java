@@ -18,15 +18,14 @@ public class Main {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("wyniki.csv"));
             for (Type type :
                     results.keySet()) {
-
-                bufferedWriter.write(type.toString() + "\n\n");
+                bufferedWriter.write("\n\n");
+                bufferedWriter.write(type.toString() + "\n");
                 bufferedWriter.write("liczba agentów;błąd bezwgledny;roznica do MonteCarlo;czas wykonania;ilość wykonań;\n");
                 for (Integer agentsNum :
                         new TreeSet<>(results.get(type).keySet())) {
                     bufferedWriter.write("\n"+agentsNum + ";" + results.get(type).get(agentsNum).toString());
-                    bufferedWriter.write("\n");
                 }
-                bufferedWriter.write("\n");
+
             }
             bufferedWriter.close();
         } catch (IOException e) {
@@ -37,17 +36,17 @@ public class Main {
     public static Map<Type, Map<Integer, AggregatedResults>> generateCsv() {
 
         Map<Integer, Integer> testScope = new HashMap<Integer, Integer>() {{
-            put(5, 1);
-            put(6, 1);
-            put(7, 1);
-//            put(8, 1);
-//            put(9, 1);
-//            put(10, 1);
-//            put(11, 1);
-//            put(12, 1);
-//            put(15, 1);
-//            put(18, 1);
-//            put(20, 1);
+            put(5, 8);
+            put(6, 8);
+            put(7, 7);
+            put(8, 6);
+            put(9, 5);
+            put(10, 4);
+            put(11, 3);
+            put(12, 2);
+            put(15, 1);
+            put(18, 1);
+            put(20, 1);
 
 
 //            put(30, 1);

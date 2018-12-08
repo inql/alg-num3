@@ -38,6 +38,7 @@ public class ResultGenerator {
         double timeInMilliSeconds;
         MatrixGenerator matrixGenerator;
 
+
         for (Integer agentsNumber :
                 testScope.keySet()) {
             matrixGenerator = new MatrixGenerator(new Case(0,0,agentsNumber)); //yes\no voters doesnt matter in that case
