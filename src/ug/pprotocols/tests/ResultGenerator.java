@@ -41,6 +41,7 @@ public class ResultGenerator {
 
         for (Integer agentsNumber :
                 testScope.keySet()) {
+            System.out.println(agentsNumber);
             matrixGenerator = new MatrixGenerator(new Case(0,0,agentsNumber)); //yes\no voters doesnt matter in that case
             MatrixCompatible[] monteCarloValues = new Mcarlo(iterationsCount).getAllProbabilities(matrixGenerator.generateKeys());
             for (Type type :
@@ -53,9 +54,12 @@ public class ResultGenerator {
                         stop = System.nanoTime();
                         timeInMilliSeconds = ((stop-start)/1000000D);
                         aggregatedResults.updateAggregatedResults(new Results(
-                                calculateAbsoluteError(equationToSolve.getNewVectorB(),equationToSolve.getVectorB(),equationToSolve),
+                                calculateAbsoluteErrorMax(equationToSolve.getVectorB(),
+                                        equationToSolve.getNewVectorB(),equationToSolve),
                                 timeInMilliSeconds,
-                                calculateDifferenceFromMonteCarlo(monteCarloValues, results,equationToSolve)));
+                                calculateAbsoluteErrorAverage(monteCarloValues, results,equationToSolve),
+                                calculateAbsoluteErrorAverage(equationToSolve.getVectorB(),
+                                        equationToSolve.getNewVectorB(),equationToSolve)));
                     }
             aggregatedResults.divideByExecutionCount();
             testsResults.get(type).put(agentsNumber,aggregatedResults);
@@ -63,15 +67,11 @@ public class ResultGenerator {
         }
 
 
-
-
-
-
         return testsResults;
     }
 
     @SuppressWarnings("unchecked")
-    private Double calculateDifferenceFromMonteCarlo(MatrixCompatible[] mCarloResultVector, MatrixCompatible[] calculatedVector, Equation equation){
+    private Double calculateAbsoluteErrorAverage(MatrixCompatible[] mCarloResultVector, MatrixCompatible[] calculatedVector, Equation equation){
         MatrixCompatible absoluteError = matrixCompatibleFactory.createWithNominator(0D);
         for(int i = 0; i<mCarloResultVector.length; i++){
             absoluteError = dataOperation.add(absoluteError,dataOperation.subtract(mCarloResultVector[i],calculatedVector[equation.getMatrixA().rows[i]]));
@@ -82,7 +82,7 @@ public class ResultGenerator {
 
 
     @SuppressWarnings("unchecked")
-    private Double calculateAbsoluteError(MatrixCompatible[] goldenVector, MatrixCompatible[] calculatedVector, Equation equation){
+    private Double calculateAbsoluteErrorMax(MatrixCompatible[] goldenVector, MatrixCompatible[] calculatedVector, Equation equation){
         double maxAbsoluteError = Math.abs(dataOperation.subtract(goldenVector[0],calculatedVector[equation.getMatrixA().rows[0]]).getDoubleValue());
         for(int i = 0; i<goldenVector.length; i++){
             double temp = Math.abs(dataOperation.subtract(goldenVector[i],calculatedVector[equation.getMatrixA().rows[i]]).getDoubleValue());

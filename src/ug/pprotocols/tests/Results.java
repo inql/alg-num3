@@ -2,19 +2,21 @@ package ug.pprotocols.tests;
 
 public class Results {
 
-    double absoluteError;
+    double absoluteErrorMax;
     double executionTime;
     double differenceFromMonteCarlo;
+    double absoluteErrorAverage;
 
-    public Results(double absoluteError, double executionTime, double differenceFromMonteCarlo) {
-        this.absoluteError = absoluteError;
+    public Results(double absoluteErrorMax, double executionTime, double differenceFromMonteCarlo, double absoluteErrorAverage) {
+        this.absoluteErrorMax = absoluteErrorMax;
         this.executionTime = executionTime;
         this.differenceFromMonteCarlo = differenceFromMonteCarlo;
+        this.absoluteErrorAverage = absoluteErrorAverage;
     }
 
     @Override
     public String toString() {
-        return absoluteError+";"+differenceFromMonteCarlo+";"+executionTime+";";
+        return absoluteErrorMax +","+absoluteErrorAverage+","+differenceFromMonteCarlo+","+executionTime+",";
     }
 
 

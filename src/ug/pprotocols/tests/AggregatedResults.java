@@ -6,25 +6,27 @@ public class AggregatedResults {
     private long executionCount;
 
     public AggregatedResults() {
-        this.results = new Results(0,0,0);
+        this.results = new Results(0,0,0,0);
         this.executionCount = 0;
     }
 
     public void updateAggregatedResults(Results values){
-        this.results.absoluteError+=values.absoluteError;
+        this.results.absoluteErrorMax +=values.absoluteErrorMax;
         this.results.executionTime+=values.executionTime;
         this.results.differenceFromMonteCarlo+=values.differenceFromMonteCarlo;
+        this.results.absoluteErrorAverage+=values.absoluteErrorAverage;
         this.executionCount++;
     }
 
     public void divideByExecutionCount(){
-        this.results.absoluteError/=(double)executionCount;
+        this.results.absoluteErrorMax /=(double)executionCount;
         this.results.executionTime/=(double)executionCount;
         this.results.differenceFromMonteCarlo/=(double)executionCount;
+        this.results.absoluteErrorAverage/=(double)executionCount;
     }
 
     @Override
     public String toString() {
-        return results.toString()+executionCount+";";
+        return results.toString()+executionCount+",";
     }
 }
