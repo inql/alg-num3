@@ -3,4 +3,7 @@
 \BOOKMARK [2][-]{subsection.2.1}{Generowanie uk\233adu r\363wnan dla danej liczby agent\363w}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Prawid\233owosc implementacji}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Metody iteracyjne a problem}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Podzia\233 pracy}{}% 6
+\BOOKMARK [1][-]{section.3}{Analiza wynik\363w i wydajnosc zaimplementowanych algorytm\363w}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Analiza wynik\363w}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Gauss oraz Gauss z optymalizacja dla macierzy rzadkich}{subsection.3.1}% 8
+\BOOKMARK [1][-]{section.4}{Podzia\233 pracy}{}% 9
