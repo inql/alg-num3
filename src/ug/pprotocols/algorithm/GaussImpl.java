@@ -2,6 +2,7 @@ package ug.pprotocols.algorithm;
 
 import ug.pprotocols.ChoiceType;
 import ug.pprotocols.datatypes.DoubleComp;
+import ug.pprotocols.matrix.Equation;
 import ug.pprotocols.matrix.MyMatrix;
 import ug.pprotocols.Swapper;
 import ug.pprotocols.datatypes.MatrixCompatible;
@@ -187,13 +188,19 @@ public class GaussImpl {
     }
 
     private Double calculateAbsoluteError(MatrixCompatible[] vectorX, MatrixCompatible[] prevVectorX){
-        MatrixCompatible absoluteError = matrixCompatibleFactory.createWithNominator(0D);
-        for(int i = 0;i < vectorX.length; i++){
-            absoluteError = dataOperation.add(absoluteError,dataOperation.subtract(vectorX[i],prevVectorX[myMatrix.rows[i]]));
+//        MatrixCompatible absoluteError = matrixCompatibleFactory.createWithNominator(0D);
+//        for(int i = 0;i < vectorX.length; i++){
+//            absoluteError = dataOperation.add(absoluteError,dataOperation.subtract(vectorX[i],prevVectorX[myMatrix.rows[i]]));
+//        }
+//        return Math.abs(absoluteError.getDoubleValue())/ (double) vectorX.length;
+        double maxAbsoluteError = Math.abs(dataOperation.subtract(vectorX[0],prevVectorX[myMatrix.rows[0]]).getDoubleValue());
+        for(int i = 0; i<vectorX.length; i++){
+            double temp = Math.abs(dataOperation.subtract(vectorX[i],prevVectorX[myMatrix.rows[i]]).getDoubleValue());
+            if (temp > maxAbsoluteError)
+                maxAbsoluteError = temp;
         }
-        return Math.abs(absoluteError.getDoubleValue())/ (double) vectorX.length;
+        return maxAbsoluteError;
     }
-
 
 
     public MatrixCompatible[][] multiplyMatrices(MatrixCompatible[][] a, MatrixCompatible[][] b) {
