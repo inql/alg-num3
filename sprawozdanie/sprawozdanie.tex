@@ -43,13 +43,13 @@ Dla danego prawdopodobieństwa $P_{\#Y,\#N}$, niech $\#N$ oznacza ilość agent�
 Program przygotowany w ramach projektu, ma na celu obliczenie prawdopodobieństwa zagłosowania na TAK przy liczbie agentów równej $N$ i określonym stanie początkowym. Do jego obliczenia wykorzystany został układ równań liniowych obliczony za pomocą 3 różnych algorytmów:
 \begin{itemize}
 	\item Algorytm Gaussa z częściowym wyborem elementu początkowego (nazywany dalej PG) oraz jego wariant z optymalizacją dla macierzy rzadkich (nazywany dalej PGS)
-	\item Algorytm Jacobiego z postacią iteracyjną:\\
+	\item Algorytm Jacobiego z postacią iteracyjną:
 	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{n}a_{ij}{x_j}^{k}+b_i}{a_{ii}}, i=1,2,...,n,  j\neq i,$
-	\item Algorytm Gaussa-Seidela z postacią iteracyjną:\\
+	\item Algorytm Gaussa-Seidela z postacią iteracyjną:
 	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{i-1}a_{ij}{x_j}^{(k+1)}-\sum_{j=i+1}^{n}a_{ij}{x_j}^{(k)}+b_i}{a_{ii}}.$
 \end{itemize}
-Wszystkie testy niezbędne do analizy problemu zostały wykonane, używając typu podwójnej precyzji \texttt{double}
-xD
+Wszystkie testy niezbędne do analizy problemu zostały wykonane, używając typu podwójnej precyzji \texttt{double} za pomocą programu wykonanego w języku \texttt{Java}.
+Zakres testów to $N = 3,4,...,30$ (chyba że jest podane inaczej) w ilości prób równej $200$.
 \section{Implementacja i możliwość stosowania metod iteracyjnych}
 \begin{figure}[h]
 	\caption{Wykres reprezentujący błąd bezwzględny metod Gaussa oraz metod iteracyjnych względem metody MonteCarlo\label{rys}}
@@ -73,7 +73,7 @@ By zweryfikować poprawność implementacji zarówno generowania macierzy jak i 
 Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody MonteCarlo jest wynikiem jak najbardziej zadowalającym.
 \subsection{Metody iteracyjne a problem}
 Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj. $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ - żądana precyzja.
-W przypadku zadanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
+W przypadku żądanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
 \begin{wn}
 	Metody iteracyjne umożliwiają rozwiązanie problemu aczkolwiek, by osiągnąć dokładniejsze wyniki, należy zwiększyć dokładność, a co za tym idzie - liczbę iteracji, co znacząco wydłuża czas działania algorytmu. \label{wn:1}
 \end{wn}
@@ -108,27 +108,27 @@ Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyn
 	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik.\label{wn:2}
 \end{wn}
 \subsubsection{Algorytmy iteracyjne}
-Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
+Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
 Wnioski z nich są następujące:
 \begin{wn}
 	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była żądana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny. \label{wn:3}
 \end{wn}
 \subsection{Wydajność}
 \subsubsection{Metody PG oraz PGS}
-Przeanalizujmy wykres XD. Zauważyć na nim można znaczną przewagę algorytmu PGS względem PG w czasie wykonywania. Wynika to ze specyfiki działania wariantu PGS - algorytm ten pomija redukcję elementów w wierszu w przypadku gdy wybrany na początku element jest równy zeru.
+Przeanalizujmy wykres \ref{Rys2b}. Zauważyć na nim można znaczną przewagę algorytmu PGS względem PG w czasie wykonywania. Wynika to ze specyfiki działania wariantu PGS - algorytm ten pomija redukcję elementów w wierszu w przypadku gdy wybrany na początku element jest równy zeru.
 \begin{wn}
-	Wariant PGS algorytmu Gaussa jest wydajniejszy niż standardowy wariant PG. Zestawiając ten wniosek z wnioskiem \ref{wn:3} stwierdzić można, iż wariant PGS zapewnia o wiele lepszą wydajność nie mając żadnego wpływu na poprawność zwracanych wyników
+	Wariant PGS algorytmu Gaussa jest wydajniejszy niż standardowy wariant PG. Zestawiając ten wniosek z wnioskiem \ref{wn:3} stwierdzić można, iż wariant PGS zapewnia o wiele lepszą wydajność nie mając żadnego wpływu na poprawność zwracanych wyników.
 	 \label{wn:4}
 \end{wn}
 \subsubsection{Metody iteracyjne}
-W przypadku metod iteracyjnych, należy rozważyć osobno algorytmy dla różnej zadanej precyzji.
+W przypadku metod iteracyjnych, należy rozważyć osobno algorytmy dla różnej żądanej precyzji.
 Jednakże we wszystkich przypadków, zależność jest następująca: Metoda Gaussa-Seidela w każdym przypadku (wraz z wzrostem $N$) ma krótszy czas wykonania względem metody Jacobiana.
 \begin{wn}
 	Metoda Gaussa-Seidela jest wydajniejsza od metody Jacobiana - wynika to ze sposobu działania obu tych algorytmów. Metoda Jacobiana by osiągnąć żądaną precyzję musi wykonać o wiele więcej iteracji niż metoda Gaussa-Seidela. \label{wn:5}
 \end{wn}
 \subsection{Podsumowanie}
 \begin{wn}
-	Biorąc pod uwagę wszystkie czynniki (rozmiar planszy oraz żądaną dokładność), najlepszą metodą w kategorii poprawność/wydajność jest PGS. Zapewnia on przyzwoitą dokładność, jednocześnie deklasuje pozostałe metody w kwestii czasu wykonywania. Jednakże, jeśli chcemy osiągnąć daną precyzję, metody iteracyjne gwrantują pewność zwracanego wyniku. Bazując na wniosku \ref{wn:4}, najlepszym wyborem jest metoda Gaussa-Seidela \label{wn:6}
+	Biorąc pod uwagę wszystkie czynniki (rozmiar planszy oraz żądaną dokładność), najlepszą metodą w kategorii poprawność/wydajność jest PGS. Zapewnia on przyzwoitą dokładność, jednocześnie deklasuje pozostałe metody w kwestii czasu wykonywania. Jednakże, jeśli chcemy osiągnąć daną precyzję, metody iteracyjne gwrantują pewność zwracanego wyniku. Bazując na wniosku \ref{wn:4}, najlepszym wyborem jest metoda Gaussa-Seidela. \label{wn:6}
 \end{wn}
 \section{Podział pracy}
 \centering
