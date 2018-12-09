@@ -29,8 +29,25 @@ footskip=.15in]{geometry}
 \maketitle 
 
 \section{Majority/Consensus problem}
-Sprawozdanie prezentuje analizę problemu przeprowadzenia głosowania większościowego. W tym celu, stworzony został program, który generuje układ równań dla danego ustawienia oraz oblicza prawdopodobieństwo zagłosowania na TAK.
-
+Sprawozdanie prezentuje analizę problemu przeprowadzenia głosowania większościowego, przedstawionego w sposób następujący:\\
+Dane jest $N$ agentów, o trzech możliwych stanach: $\{Y,N,U\}$, znaczące kolejno: agent głosujący na TAK, agent głosujący na NIE oraz agent niezdecydowany.
+W każdym kroku omawianego problemu losowanych jest dwóch agentów z równomiernym prawdopodobieństwem ($\frac{2}{n\cdot (n-1)}$). Następnie dochodzi do zmiany stanu wybranych agentów według następujących reguł przejść stanów:
+\begin{itemize}
+	\item $\{Y,U\} \to \{Y,Y\}$,
+	\item $\{Y,N\} \to \{U,U\}$,
+	\item $\{N,U\} \to \{N,N\}$,
+\end{itemize}
+Kroki wykonywane są, dopóki wszyscy agenci nie będą jednakowego stanu.
+\\
+Dla danego prawdopodobieństwa $P_{\#Y,\#N}$, niech $\#N$ oznacza ilość agentów głosujących na NIE, a $\#Y$ ilość agentów głosujących na TAK.
+Program przygotowany w ramach projektu, ma na celu obliczenie prawdopodobieństwa zagłosowania na TAK przy liczbie agentów równej $N$ i określonym stanie początkowym. Do jego obliczenia wykorzystany został układ równań liniowych obliczony za pomocą 3 różnych algorytmów:
+\begin{itemize}
+	\item Algorytm Gaussa z częściowym wyborem elementu początkowego (nazywany dalej PG) oraz jego wariant z optymalizacją dla macierzy rzadkich (nazywany dalej PGS)
+	\item Algorytm Jacobiego z postacią iteracyjną:\\
+	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{n}a_{ij}{x_j}^{k}+b_i}{a_{ii}}, i=1,2,...,n,  j\neq i.$
+	\item Algorytm Gaussa-Seidela z postacią iteracyjną:\\
+	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{i-1}a_{ij}{x_j}^{(k+1)}-\sum_{j=i+1}^{n}a_{ij}{x_j}^{(k)}+b_i}{a_{ii}}$
+\end{itemize}
 \section{Implementacja i możliwość stosowania metod iteracyjnych}
 \begin{figure}[h]
 	\caption{Wykres reprezentujący błąd bezwzględny metod Gaussa oraz metod iteracyjnych względem metody MonteCarlo\label{rys}}
@@ -52,15 +69,8 @@ Generowanie układu równań dla danego $N$ odbywa się w sposób następujący:
 By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N \in [3,15]$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody MonteCarlo w ilości iteracji $=1000000$
 Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody MonteCarlo jest wynikiem jak najbardziej zadowalającym.
 \subsection{Metody iteracyjne a problem}
-W celu zastosowania metod iteracyjnych, wybrane zostały dwie z nich:
-\begin{itemize}
-	\item Algorytm Jacobiego z postacią iteracyjną:\\
-	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{n}a_{ij}{x_j}^{k}+b_i}{a_{ii}}, i=1,2,...,n,  j\neq i.$
-	\item Algorytm Gaussa-Seidela z postacią iteracyjną:\\
-	${x_{i}}^{(k+1)}=\frac{-\sum_{j=1}^{i-1}a_{ij}{x_j}^{(k+1)}-\sum_{j=i+1}^{n}a_{ij}{x_j}^{(k)}+b_i}{a_{ii}}$
-\end{itemize}
-Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj ${X^{(k+1)}-X^{(k)}}$.
-W przypadku zadanej dokładności równej $1-E6$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($1-E10,1-E14$).
+Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ = zadana precyzja.
+W przypadku zadanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
 \begin{wn}
 	Metody iteracyjne umożliwiają rozwiązanie problemu aczkolwiek, by osiągnąć dokładniejsze wyniki, należy zwiększyć dokładność, a co za tym idzie - liczbę iteracji, co znacząco wydłuża czas działania algorytmu.
 \end{wn}
@@ -90,18 +100,29 @@ Błąd bezwzględny dla poszczególnych metod był wyliczany w sposób następuj
 	\item Jako błąd przechowywana jest największa wartość oraz jej średnia
 \end{enumerate}
 \subsubsection{Gauss oraz Gauss z optymalizacją dla macierzy rzadkich}
-Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyników dla wartości średniej oraz maksymalnej błędu bezwzględnego. Z wartości na nich ukazanych wynika, że w przypadku metod Gaussa oraz Gaussa z optymalizacją dla macierzy rzadkich, zarówno maksymalny jak i średni błąd jest identyczny.
+Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyników dla wartości średniej oraz maksymalnej błędu bezwzględnego. Z wartości na nich ukazanych wynika, że w przypadku metod PG oraz PGS, zarówno maksymalny jak i średni błąd jest identyczny.
 \begin{wn}
-	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik, ponieważ optymalizacja ta, sprawdza przed wyzerowaniem elementu, czy nie jest on już zerem.
+	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik.
 \end{wn}
 \subsubsection{Algorytmy iteracyjne}
-Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności - $10^{-6},10^{-10}$ oraz $10^{-14}$
+Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
+Wnioski z nich są następujące:
+\begin{wn}
+	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była zadana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny
+\end{wn}
+\subsection{Wydajność}
+\subsubsection{Metody PG oraz PGS}
+\subsubsection{Metody iteracyjne}
+W przypadku metod iteracyjnych, należy 
+\subsubsection{Podsumowanie}
 \section{Podział pracy}
 \centering
-	\begin{tabular}{| p{4.4cm} | p{4.4cm} | p{4.4cm} |}
+	\begin{tabular}{| p{4.5cm} | p{4.5cm} | p{4.5cm} |}
 		\hline
 		\textbf{Dawid Bińkuś} & \textbf{Oskar Bir} & \textbf{Mateusz Małecki} \\ \hline
-		 \hline
+		Implementacja algorytmu PG oraz PGS & Implementacja algorytmu Gaussa-Seidela & Implementacja algorytmu Jacobiego \\ \hline
+		Przygotowanie sprawozdania & Przygotowanie testów i ich uruchomienie & Praca nad strukturą projektu \\ \hline
+		Implementacja algorytmu generowania macierzy & Przygotowanie wykresów końcowych &Implementacja symulacji MonteCarlo\\ \hline
 		
 		
 		
