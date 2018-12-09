@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ug/pprotocols/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,15 +51,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="87" column="13" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/Randomizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -70,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1074">
@@ -312,7 +318,7 @@
       <workItem from="1543951951256" duration="26000" />
       <workItem from="1543953516071" duration="6861000" />
       <workItem from="1544286240916" duration="7632000" />
-      <workItem from="1544350326155" duration="7634000" />
+      <workItem from="1544350326155" duration="8245000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup">
       <created>1543702879399</created>
@@ -339,11 +345,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48790000" />
+    <option name="totallyTimeSpent" value="49401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="336" width="1366" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27033132" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -354,7 +359,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32940018" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.63142437" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.080763586" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39823008" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -456,16 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/MyMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -518,16 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1074">
-          <caret line="227" column="30" selection-start-line="227" selection-start-column="30" selection-end-line="227" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/Equation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="543">
@@ -571,6 +556,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/Mcarlo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1074">
+          <caret line="227" column="30" selection-start-line="227" selection-start-column="30" selection-end-line="227" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

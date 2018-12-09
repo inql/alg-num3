@@ -71,6 +71,14 @@ W przypadku zadanej dokładności równej $1-E6$ zauważyć można że, różnic
 		\includegraphics[width=\textwidth]{2.png}
 		\caption{ \label{Rys2a}}
 	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{3.png}
+	\caption{ \label{Rys2b}}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{4.png}
+	\caption{ \label{Rys2c}}
+	\end{subfigure}
 \end{figure}
 \subsection{Analiza wyników}
 Błąd bezwzględny dla poszczególnych metod był wyliczany w sposób następujący:
@@ -86,6 +94,8 @@ Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyn
 \begin{wn}
 	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik, ponieważ optymalizacja ta, sprawdza przed wyzerowaniem elementu, czy nie jest on już zerem.
 \end{wn}
+\subsubsection{Algorytmy iteracyjne}
+Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności - $10^{-6},10^{-10}$ oraz $10^{-14}$
 \section{Podział pracy}
 \centering
 	\begin{tabular}{| p{4.4cm} | p{4.4cm} | p{4.4cm} |}
