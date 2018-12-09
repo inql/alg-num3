@@ -43,7 +43,11 @@ public class ResultGenerator {
                 testScope.keySet()) {
             System.out.println(agentsNumber);
             matrixGenerator = new MatrixGenerator(new Case(0,0,agentsNumber)); //yes\no voters doesnt matter in that case
-            MatrixCompatible[] monteCarloValues = new Mcarlo(iterationsCount).getAllProbabilities(matrixGenerator.generateKeys());
+            MatrixCompatible[] monteCarloValues;
+            if(agentsNumber<=15)
+                monteCarloValues = new Mcarlo(iterationsCount).getAllProbabilities(matrixGenerator.generateKeys());
+            else
+                monteCarloValues = null;
             for (Type type :
                         testsResults.keySet()) {
                 AggregatedResults aggregatedResults = new AggregatedResults();
@@ -53,13 +57,22 @@ public class ResultGenerator {
                         MatrixCompatible[] results = equationToSolve.evaluate(type);
                         stop = System.nanoTime();
                         timeInMilliSeconds = ((stop-start)/1000000D);
-                        aggregatedResults.updateAggregatedResults(new Results(
-                                calculateAbsoluteErrorMax(equationToSolve.getVectorB(),
-                                        equationToSolve.getNewVectorB(),equationToSolve),
-                                timeInMilliSeconds,
-                                calculateAbsoluteErrorAverage(monteCarloValues, results,equationToSolve),
-                                calculateAbsoluteErrorAverage(equationToSolve.getVectorB(),
-                                        equationToSolve.getNewVectorB(),equationToSolve)));
+                        if(agentsNumber<=15)
+                            aggregatedResults.updateAggregatedResults(new Results(
+                                    calculateAbsoluteErrorMax(equationToSolve.getVectorB(),
+                                            equationToSolve.getNewVectorB(),equationToSolve),
+                                    timeInMilliSeconds,
+                                    calculateAbsoluteErrorAverage(monteCarloValues, results,equationToSolve),
+                                    calculateAbsoluteErrorAverage(equationToSolve.getVectorB(),
+                                            equationToSolve.getNewVectorB(),equationToSolve)));
+                        else
+                            aggregatedResults.updateAggregatedResults(new Results(
+                                    calculateAbsoluteErrorMax(equationToSolve.getVectorB(),
+                                            equationToSolve.getNewVectorB(),equationToSolve),
+                                    timeInMilliSeconds,
+                                    0,
+                                    calculateAbsoluteErrorAverage(equationToSolve.getVectorB(),
+                                            equationToSolve.getNewVectorB(),equationToSolve)));
                     }
             aggregatedResults.divideByExecutionCount();
             testsResults.get(type).put(agentsNumber,aggregatedResults);

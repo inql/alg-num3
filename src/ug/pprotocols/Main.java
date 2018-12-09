@@ -16,6 +16,7 @@ public class Main {
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("wyniki.csv"));
+            bufferedWriter.write("NOTE:,For agents count higher than 15, montecarlo isnt generated\n");
             for (Type type :
                     results.keySet()) {
                 bufferedWriter.write("\n\n");
@@ -36,21 +37,8 @@ public class Main {
     public static Map<Type, Map<Integer, AggregatedResults>> generateCsv() {
 
         Map<Integer, Integer> testScope = new HashMap<Integer, Integer>() {{
-//            put (3,1);
-//            put(4,1);
-//            put(5, 1);
-//            put(6,1);
-//            put(7,1);
-//            put(8,1);
-//            put(9,1);
-//            put(10,1);
-////            put(11, 3);
-////            put(12, 2);
-////            put(15, 1);
-////            put(18, 1);
-////            put(20, 1);
         }};
-        for(int i =3; i<=25; i++){
+        for(int i =3; i<=50; i++){
             testScope.put(i,200);
         }
 
