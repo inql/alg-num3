@@ -53,11 +53,12 @@ public class ResultGenerator {
                 AggregatedResults aggregatedResults = new AggregatedResults();
                 for(int i = 0; i< testScope.get(agentsNumber); i++) {
                         Equation equationToSolve = matrixGenerator.generateEquation();
+                    System.out.println(matrixGenerator.indexToKey.size());
                         start = System.nanoTime();
                         MatrixCompatible[] results = equationToSolve.evaluate(type);
                         stop = System.nanoTime();
                         timeInMilliSeconds = ((stop-start)/1000000D);
-                        if(agentsNumber<=15)
+                        if(monteCarloValues != null)
                             aggregatedResults.updateAggregatedResults(new Results(
                                     calculateAbsoluteErrorMax(equationToSolve.getVectorB(),
                                             equationToSolve.getNewVectorB(),equationToSolve),
