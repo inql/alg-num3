@@ -51,7 +51,8 @@ Program przygotowany w ramach projektu, ma na celu obliczenie prawdopodobieństw
 \section{Implementacja i możliwość stosowania metod iteracyjnych}
 \begin{figure}[h]
 	\caption{Wykres reprezentujący błąd bezwzględny metod Gaussa oraz metod iteracyjnych względem metody MonteCarlo\label{rys}}
-	\begin{subfigure}{1\textwidth}
+	\centering
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{1.png}
 		\caption{ \label{Rys1a}}
 	\end{subfigure}
@@ -66,10 +67,10 @@ Generowanie układu równań dla danego $N$ odbywa się w sposób następujący:
 	\item Wypełnienie wektora $B$ zerami z wyjątkiem ostatniej wartości (gdyż ostatni przypadek jest zawsze przypadkiem pewnym, tj $P_{\#Y=N,\#N=0}=1)$
 \end{enumerate}
 \subsection{Prawidłowość implementacji}
-By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N \in [3,15]$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody MonteCarlo w ilości iteracji $=1000000$
+By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N = 3,4,...,15$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody MonteCarlo w ilości iteracji $=1000000$
 Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody MonteCarlo jest wynikiem jak najbardziej zadowalającym.
 \subsection{Metody iteracyjne a problem}
-Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ = zadana precyzja.
+Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ = żądana precyzja.
 W przypadku zadanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
 \begin{wn}
 	Metody iteracyjne umożliwiają rozwiązanie problemu aczkolwiek, by osiągnąć dokładniejsze wyniki, należy zwiększyć dokładność, a co za tym idzie - liczbę iteracji, co znacząco wydłuża czas działania algorytmu.
@@ -108,11 +109,11 @@ Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyn
 Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
 Wnioski z nich są następujące:
 \begin{wn}
-	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była zadana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny. \label{wn:2}
+	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była żądana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny. \label{wn:2}
 \end{wn}
 \subsection{Wydajność}
 \subsubsection{Metody PG oraz PGS}
-Przeanalizujmy wykres XD. Zauważyć na nim można znaczną przewagę algorytmu PGS względem PG w czasie wykonywania algorytmu. Wynika to ze specyfiki działania wariantu PGS - algorytm ten pomija redukcję elementów w wierszu w przypadku gdy wybrany na początku element jest równy zeru.
+Przeanalizujmy wykres XD. Zauważyć na nim można znaczną przewagę algorytmu PGS względem PG w czasie wykonywania. Wynika to ze specyfiki działania wariantu PGS - algorytm ten pomija redukcję elementów w wierszu w przypadku gdy wybrany na początku element jest równy zeru.
 \begin{wn}
 	Wariant PGS algorytmu Gaussa jest wydajniejszy niż standardowy wariant PG. Zestawiając ten wniosek z wnioskiem \ref{wn:3} stwierdzić można, iż wariant PGS zapewnia o wiele lepszą wydajność nie mając żadnego wpływu na poprawność zwracanych wyników
 	 \label{wn:3}
@@ -123,10 +124,13 @@ Jednakże we wszystkich przypadków, zależność jest następująca: Metoda Gau
 \begin{wn}
 	Metoda Gaussa-Seidela jest wydajniejsza od metody Jacobiana - wynika to ze sposobu działania obu tych algorytmów. Metoda Jacobiana by osiągnąć żądaną precyzję musi wykonać o wiele więcej iteracji niż metoda Gaussa-Seidela. \label{wn:4}
 \end{wn}
-\subsubsection{Podsumowanie}
+\subsection{Podsumowanie}
+\begin{wn}
+	XD
+\end{wn}
 \section{Podział pracy}
 \centering
-	\begin{tabular}{| p{4.5cm} | p{4.5cm} | p{4.5cm} |}
+	\begin{tabular}{| p{5cm} | p{5cm} | p{5cm} |}
 		\hline
 		\textbf{Dawid Bińkuś} & \textbf{Oskar Bir} & \textbf{Mateusz Małecki} \\ \hline
 		Implementacja algorytmu PG oraz PGS & Implementacja algorytmu Gaussa-Seidela & Implementacja algorytmu Jacobiego \\ \hline

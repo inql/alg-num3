@@ -43,22 +43,13 @@ public class Main {
 
         Map<Integer, Integer> testScope = new HashMap<Integer, Integer>() {{
         }};
-        for(int i =3; i<=30; i++){
-            testScope.put(i,200);
+        for(int i =30; i<=50; i++){
+            testScope.put(i,1);
         }
 
-//        Type[] types = Type.values();
-//        Arrays.sort(types);
-//        List<Type> testCases = Arrays.asList(types);
-
-        List<Type> testCases = new ArrayList<Type>(){{
-            add(Type.JACOBIAN_MINUS6);
-            add(Type.JACOBIAN_MINUS10);
-            add(Type.JACOBIAN_MINUS14);
-            add(Type.GAUSS_SEIDEL_MINUS6);
-            add(Type.GAUSS_SEIDEL_MINUS10);
-            add(Type.GAUSS_SEIDEL_MINUS14);
-        }};
+        Type[] types = Type.values();
+        Arrays.sort(types);
+        List<Type> testCases = Arrays.asList(types);
 
         ResultGenerator resultGenerator = new ResultGenerator(testScope);
         return resultGenerator.doTests(testCases,100000);
