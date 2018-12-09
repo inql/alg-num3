@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" afterDir="false" />
@@ -56,9 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/golden.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="-2430" />
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -82,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
+            <state relative-caret-position="2667">
               <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -183,8 +183,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2206" />
-    <option name="y" value="670" />
+    <option name="x" value="2006" />
+    <option name="y" value="463" />
     <option name="width" value="1262" />
     <option name="height" value="663" />
   </component>
@@ -315,7 +315,7 @@
       <workItem from="1543951951256" duration="26000" />
       <workItem from="1543953516071" duration="6861000" />
       <workItem from="1544286240916" duration="7632000" />
-      <workItem from="1544350326155" duration="10064000" />
+      <workItem from="1544350326155" duration="10910000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup">
       <created>1543702879399</created>
@@ -342,10 +342,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51220000" />
+    <option name="totallyTimeSpent" value="52066000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2206" y="670" width="1262" height="663" extended-state="0" />
+    <frame x="2006" y="463" width="1262" height="663" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29330066" />
@@ -546,16 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wyniki.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14">
@@ -578,7 +568,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/golden.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-2430" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/algorithm/GaussImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2667">
+          <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

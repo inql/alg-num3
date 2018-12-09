@@ -102,18 +102,27 @@ Błąd bezwzględny dla poszczególnych metod był wyliczany w sposób następuj
 \subsubsection{Gauss oraz Gauss z optymalizacją dla macierzy rzadkich}
 Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyników dla wartości średniej oraz maksymalnej błędu bezwzględnego. Z wartości na nich ukazanych wynika, że w przypadku metod PG oraz PGS, zarówno maksymalny jak i średni błąd jest identyczny.
 \begin{wn}
-	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik.
+	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik.\label{wn:1}
 \end{wn}
 \subsubsection{Algorytmy iteracyjne}
 Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej zadanej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
 Wnioski z nich są następujące:
 \begin{wn}
-	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była zadana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny
+	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była zadana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny. \label{wn:2}
 \end{wn}
 \subsection{Wydajność}
 \subsubsection{Metody PG oraz PGS}
+Przeanalizujmy wykres XD. Zauważyć na nim można znaczną przewagę algorytmu PGS względem PG w czasie wykonywania algorytmu. Wynika to ze specyfiki działania wariantu PGS - algorytm ten pomija redukcję elementów w wierszu w przypadku gdy wybrany na początku element jest równy zeru.
+\begin{wn}
+	Wariant PGS algorytmu Gaussa jest wydajniejszy niż standardowy wariant PG. Zestawiając ten wniosek z wnioskiem \ref{wn:3} stwierdzić można, iż wariant PGS zapewnia o wiele lepszą wydajność nie mając żadnego wpływu na poprawność zwracanych wyników
+	 \label{wn:3}
+\end{wn}
 \subsubsection{Metody iteracyjne}
-W przypadku metod iteracyjnych, należy 
+W przypadku metod iteracyjnych, należy rozważyć osobno algorytmy dla różnej zadanej precyzji.
+Jednakże we wszystkich przypadków, zależność jest następująca: Metoda Gaussa-Seidela w każdym przypadku (wraz z wzrostem $N$) ma krótszy czas wykonania względem metody Jacobiana.
+\begin{wn}
+	Metoda Gaussa-Seidela jest wydajniejsza od metody Jacobiana - wynika to ze sposobu działania obu tych algorytmów. Metoda Jacobiana by osiągnąć żądaną precyzję musi wykonać o wiele więcej iteracji niż metoda Gaussa-Seidela. \label{wn:4}
+\end{wn}
 \subsubsection{Podsumowanie}
 \section{Podział pracy}
 \centering
