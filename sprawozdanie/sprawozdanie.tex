@@ -52,7 +52,7 @@ Wszystkie testy niezbędne do analizy problemu zostały wykonane, używając typ
 Zakres testów to $N = 3,4,...,30$ (chyba że jest podane inaczej) w ilości prób równej $200$.
 \section{Implementacja i możliwość stosowania metod iteracyjnych}
 \begin{figure}[h]
-	\caption{Wykres reprezentujący błąd bezwzględny metod Gaussa oraz metod iteracyjnych względem metody MonteCarlo\label{rys}}
+	\caption{Wykres reprezentujący błąd bezwzględny metod Gaussa oraz metod iteracyjnych względem metody Monte Carlo\label{rys}}
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{1.png}
@@ -69,11 +69,11 @@ Generowanie układu równań dla danego $N$ odbywa się w sposób następujący:
 	\item Wypełnienie wektora $B$ zerami z wyjątkiem ostatniej wartości (gdyż ostatni przypadek jest zawsze przypadkiem pewnym, tj $P_{\#Y=N,\#N=0}=1)$.
 \end{enumerate}
 \subsection{Prawidłowość implementacji}
-By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N = 3,4,...,15$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody MonteCarlo w ilości iteracji $=1000000$.
-Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody MonteCarlo jest wynikiem jak najbardziej zadowalającym.
+By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N = 3,4,...,15$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody Monte Carlo w ilości iteracji $=1000000$.
+Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody Monte Carlo jest wynikiem jak najbardziej zadowalającym.
 \subsection{Metody iteracyjne a problem}
 Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj. $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ - żądana precyzja.
-W przypadku żądanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody MonteCarlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
+W przypadku żądanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody Monte Carlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
 \begin{wn}
 	Metody iteracyjne umożliwiają rozwiązanie problemu aczkolwiek, by osiągnąć dokładniejsze wyniki, należy zwiększyć dokładność, a co za tym idzie - liczbę iteracji, co znacząco wydłuża czas działania algorytmu. \label{wn:1}
 \end{wn}
@@ -137,7 +137,7 @@ Jednakże we wszystkich przypadków, zależność jest następująca: Metoda Gau
 		\textbf{Dawid Bińkuś} & \textbf{Oskar Bir} & \textbf{Mateusz Małecki} \\ \hline
 		Implementacja algorytmu PG oraz PGS & Implementacja algorytmu Gaussa-Seidela & Implementacja algorytmu Jacobiego \\ \hline
 		Przygotowanie sprawozdania & Przygotowanie testów i ich uruchomienie & Praca nad strukturą projektu \\ \hline
-		Implementacja algorytmu generowania macierzy & Przygotowanie wykresów końcowych &Implementacja symulacji MonteCarlo\\ \hline
+		Implementacja algorytmu generowania macierzy & Przygotowanie wykresów końcowych &Implementacja symulacji Monte Carlo\\ \hline
 		
 		
 		

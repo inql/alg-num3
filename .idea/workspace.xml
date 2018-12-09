@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab34ec77-e242-4a83-8100-b325199b11e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" beforeDir="false" afterPath="$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wyniki.csv" beforeDir="false" afterPath="$PROJECT_DIR$/wyniki.csv" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +37,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wyniki.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1480">
@@ -46,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/MatrixGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
+            <state relative-caret-position="593">
               <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
             </state>
           </provider>
@@ -316,7 +316,7 @@
       <workItem from="1543951951256" duration="26000" />
       <workItem from="1543953516071" duration="6861000" />
       <workItem from="1544286240916" duration="7632000" />
-      <workItem from="1544350326155" duration="13165000" />
+      <workItem from="1544350326155" duration="13776000" />
     </task>
     <task id="LOCAL-00001" summary="cleanup">
       <created>1543702879399</created>
@@ -343,7 +343,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54321000" />
+    <option name="totallyTimeSpent" value="54932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
@@ -547,13 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/MatrixGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/golden.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="-2430" />
@@ -580,6 +573,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1480">
           <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ug/pprotocols/matrix/MatrixGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
         </state>
       </provider>
     </entry>
