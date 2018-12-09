@@ -76,9 +76,16 @@ W przypadku zadanej dokładności równej $1-E6$ zauważyć można że, różnic
 Błąd bezwzględny dla poszczególnych metod był wyliczany w sposób następujący:
 \begin{enumerate}
 	\item Wygenerowana została macierz $A$ oraz wektor $B$
-	\item Za pomocą danego
+	\item Za pomocą danego algorytmu obliczany zostaje wektor $X$ (wynikowy)
+	\item Wykonujemy operację $A\cdot x = b'$
+	\item Wyliczany jest błąd bezwzględny kolejnych wartości wektora $b'$ względem wektora $b$
+	\item Jako błąd przechowywana jest największa wartość oraz jej średnia
 \end{enumerate}
 \subsubsection{Gauss oraz Gauss z optymalizacją dla macierzy rzadkich}
+Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyników dla wartości średniej oraz maksymalnej błędu bezwzględnego. Z wartości na nich ukazanych wynika, że w przypadku metod Gaussa oraz Gaussa z optymalizacją dla macierzy rzadkich, zarówno maksymalny jak i średni błąd jest identyczny.
+\begin{wn}
+	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik, ponieważ optymalizacja ta, sprawdza przed wyzerowaniem elementu, czy nie jest on już zerem.
+\end{wn}
 \section{Podział pracy}
 \centering
 	\begin{tabular}{| p{4.4cm} | p{4.4cm} | p{4.4cm} |}
