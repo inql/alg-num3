@@ -70,7 +70,7 @@ Generowanie układu równań dla danego $N$ odbywa się w sposób następujący:
 \end{enumerate}
 \subsection{Prawidłowość implementacji}
 By zweryfikować poprawność implementacji zarówno generowania macierzy jak i obliczania stworzonego w ten sposób układu równań, wykonane zostały testy dla $N = 3,4,...,15$, których zadaniem było obliczenie wszystkich możliwych prawodopodobieństw i zestawienie ich z prawdopodobieństwem wyliczonym za pomocą metody Monte Carlo w ilości iteracji $=1000000$.
-Błędy osiągnięte za pomocą metod Gaussa \ref{Rys1a} osiągają wartości rzędu $1$, co biorąc pod uwagę niedoskonałość metody Monte Carlo jest wynikiem jak najbardziej zadowalającym.
+Błędy osiągnięte za pomocą zaimplementowanych algorytmów osiągają wartości rzędu $[10^{-3},10^{-6}]$ (przy czym warto zauważyć, że tak wysoki błąd osiągają tylko metody iteracyjne z niską żądaną precyzją), co biorąc pod uwagę niedoskonałość metody Monte Carlo jest wynikiem jak najbardziej zadowalającym.
 \subsection{Metody iteracyjne a problem}
 Wnioskując z wykresu \ref{Rys1a} możemy śmiało stwierdzić, iż metody iteracyjne są jak najbardziej słusznym sposobem na rozwiązanie problemu. Jednakże, najistotniejszym czynnikiem w przypadku ich działania jest zakładana dokładność obliczeń, tj. $\|{X^{(k+1)}-X^{(k)}}\| < p$, gdzie $p$ - żądana precyzja.
 W przypadku żądanej dokładności równej $10^{-6}$ zauważyć można że, różnice względem wartości wyliczonej za pomocą metody Monte Carlo są większe niż w przypadku metod iteracyjnych z większą zadaną dokładnością ($10^{-10}, 10^{-14}$).
@@ -91,7 +91,15 @@ W przypadku żądanej dokładności równej $10^{-6}$ zauważyć można że, ró
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\textwidth]{4.png}
 	\caption{ \label{Rys2c}}
-	\end{subfigure}
+\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{5.png}
+	\caption{ \label{Rys2d}}
+\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{6.png}
+	\caption{ \label{Rys2e}}
+\end{subfigure}
 \end{figure}
 \subsection{Analiza wyników}
 Błąd bezwzględny dla poszczególnych metod był wyliczany w sposób następujący:
@@ -108,7 +116,7 @@ Przeanalizujmy wykres \ref{Rys2a}. Zostało na nim przedstawione zestawienie wyn
 	Algorytm PG oraz PGS osiągają taką samą dokładność. Dodanie optymalizacji dla macierzy rzadkich nie ma żadnego wpływu na końcowy wynik.\label{wn:2}
 \end{wn}
 \subsubsection{Algorytmy iteracyjne}
-Przeanalizujmy wykresy \ref{Rys2b} oraz \ref{Rys2c}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
+Przeanalizujmy wykresy \ref{Rys2c} oraz \ref{Rys2d}. Prezentują one maksymalny oraz średni błąd bezwzględny dla różnej dokładności: $10^{-6},10^{-10}$ oraz $10^{-14}$.
 Wnioski z nich są następujące:
 \begin{wn}
 	Zarówno algorytm Jacobiego jak i Gaussa-Seidela oferują taką samą dokładność, w zależności od tego jaka precyzja była żądana. Warunek kończący iterowanie był zależny od maksymalnego błędu między kolejnymi iteracjami - stąd mniejszy średni błąd bezwzględny. \label{wn:3}
@@ -128,7 +136,7 @@ Jednakże we wszystkich przypadków, zależność jest następująca: Metoda Gau
 \end{wn}
 \subsection{Podsumowanie}
 \begin{wn}
-	Biorąc pod uwagę wszystkie czynniki (rozmiar planszy oraz żądaną dokładność), najlepszą metodą w kategorii poprawność/wydajność jest PGS. Zapewnia on przyzwoitą dokładność, jednocześnie deklasuje pozostałe metody w kwestii czasu wykonywania. Jednakże, jeśli chcemy osiągnąć daną precyzję, metody iteracyjne gwrantują pewność zwracanego wyniku. Bazując na wniosku \ref{wn:4}, najlepszym wyborem jest metoda Gaussa-Seidela. \label{wn:6}
+	Biorąc pod uwagę wszystkie czynniki (rozmiar planszy oraz żądaną dokładność), najlepszą metodą w kategorii poprawność/wydajność jest PGS. Zapewnia on przyzwoitą dokładność, jednocześnie deklasuje pozostałe metody w kwestii czasu wykonywania. Jednakże, jeśli chcemy osiągnąć daną precyzję, metody iteracyjne gwrantują pewność zwracanego wyniku. Bazując na wniosku \ref{wn:5}, najlepszym wyborem jest metoda Gaussa-Seidela. (\ref{Rys2e}) \label{wn:6}
 \end{wn}
 \section{Podział pracy}
 \centering
